@@ -1,36 +1,166 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎓 CampusCollab — College Project Management Platform
 
-## Getting Started
+> A collaborative platform for college students to share, discover, and contribute to real-time academic and personal projects — like LinkedIn for student projects.
 
-First, run the development server:
+---
+
+## 📌 Overview
+
+**CampusCollab** is a full-stack web application designed for university students to:
+- 🔍 Discover active tech and academic projects.
+- 🧠 Share their own projects and look for contributors.
+- 🫂 Collaborate with peers based on skills and interests.
+- 📂 Track contributions and build a mini project portfolio.
+
+Built as a group project by our class to streamline and enrich collaborative learning and innovation on campus.
+
+---
+
+## 🚀 Tech Stack
+
+| Category        | Tech Used                                      |
+|-----------------|------------------------------------------------|
+| Frontend        | **Next.js (App Router)**, **Tailwind CSS**, **TypeScript** |
+| Backend         | **Next.js Server Actions**, **Prisma ORM**     |
+| Database        | **PostgreSQL (Supabase or Railway optional)**  |
+| Auth            | **NextAuth.js** (Credentials & OAuth)          |
+| Validation      | **Zod** + **React Hook Form**                  |
+| Styling         | **Tailwind CSS**, **ShadCN UI** (Optional)     |
+| DevOps          | **Docker**, **Vercel**, **GitHub CI/CD**       |
+
+---
+
+## 🧑‍🤝‍🧑 Team Members
+
+> Project by students of **[Your College Name]** — Group [A/B/C]
+
+| Name | Role | GitHub |
+|------|------|--------|
+| Shikhar Shetty | Developer  | [@Shikhar-Shetty](https://github.com/Shikhar-Shetty) |
+| Teammate 1 | Developer | [@teammate1](https://github.com/teammate1) |
+| Teammate 2 | Developer | [@teammate2](https://github.com/teammate2) |
+| Teammate 3 | Developer | [@teammate3](https://github.com/teammate3) |
+| ... | ... | ... |
+
+---
+
+## 🔑 Features
+
+- 📋 **Post and manage your project listings**
+- 🧑‍💼 **User profiles with skill tags, social links, and project history**
+- 🔍 **Search & filter projects based on tech stack or category**
+- 🤝 **Apply to join projects or invite collaborators**
+- 💬 **Internal messaging (optional feature)**
+- 🏷️ **Tag-based project discovery (e.g. AI, Web3, Robotics)**
+
+---
+
+## 📁 Project Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+/app
+  /auth
+  /dashboard
+  /explore
+  /project/[id]
+  /profile/[username]
+
+/components
+  /ui
+  /shared
+
+/lib
+  prisma.ts
+  auth.ts
+
+/schemas
+  authSchemas.ts
+  projectSchemas.ts
+
+/prisma
+  schema.prisma
+
+/pages/api
+  /auth
+    [...nextauth].ts
+  /project.ts
+
+/public
+/styles
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# 1. Clone the repo
+```bash
+git clone https://github.com/yourusername/campus-collab.git
+cd campus-collab
+```
 
-## Learn More
+# 2. Install dependencies
+```bash
+npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+# 3. Setup environment variables
+```bash
+cp .env.example .env
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# 4. Configure PostgreSQL connection in `.env`
+```bash
+DATABASE_URL="postgresql://..."
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# 5. Push schema
+```bash
+npx prisma db push
+```
 
-## Deploy on Vercel
+# 6. Start dev server
+```bash
+npm run dev
+```
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Environmental Variable Setup
+```bash
+    DATABASE_URL=postgresql://...
+    NEXTAUTH_SECRET=your-secret
+    NEXTAUTH_URL=http://localhost:3000
+    GOOGLE_CLIENT_ID=...
+    GOOGLE_CLIENT_SECRET=...
+```
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🤝 Join the Mission — We're Open for Collaborators!
+
+Whether you're a developer, designer or just a curious learner — if the vision of CampusCollab excites you, we’d love to have you onboard.
+
+# 💡 What You’ll Get
+
+    Real-world full-stack experience with Next.js, PostgreSQL, Prisma, and modern dev workflows.
+
+    Exposure to collaborative product building — planning, coding, reviews, and shipping.
+
+    Opportunity to contribute to open-source, build your portfolio, and maybe even impress future employers.
+
+## 🛠️ Open Areas to Contribute:
+
+    🚀 Frontend polishing with Tailwind & animation (Framer Motion, Anime.js)
+
+    🔐 Auth flows with NextAuth & OAuth (Google, GitHub)
+
+    📦 Backend API design using Server Actions and Prisma
+
+    🧠 AI-based project recommendations (future roadmap)
+
+    📬 Real-time messaging feature (optional but awesome)
+
+    🐳 Docker + Vercel + GitHub CI/CD for production-grade DevOps
+
+## 📬 How to Reach Us
+
+Drop an issue in the GitHub repo or shoot a message on LinkedIn/GitHub to any of the team members listed above.
