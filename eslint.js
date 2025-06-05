@@ -6,9 +6,9 @@ export default {
   ],
   plugins: ["unused-imports", "react", "react-hooks"],
   rules: {
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "off",
-    "unused-imports/no-unused-imports": "off",
-    "react/jsx-key": "off",
+    "unused-imports/no-unused-imports": "warn", // helps clean code
+    "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+    "@typescript-eslint/no-unused-expressions": "warn",
+    "react/jsx-key": "warn",
   },
 };
