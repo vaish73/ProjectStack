@@ -1,4 +1,4 @@
-name: Next.js CI/CD
+name: Next.js + Prisma CI/CD 
 
 on: 
     push:
@@ -9,6 +9,8 @@ on:
 jobs: 
     build-and-deploy:
         runs-on: ${{ matrix.os }}
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         strategy:
             matrix:
                 os: [ubuntu-latest, windows-latest,macos-latest]
@@ -39,7 +41,7 @@ jobs:
 
             - name: Run migrations (optional)
               run: npx prisma migrate deploy
-              
+
             - name: Run ESLint
               run: npm run lint
 
