@@ -1,4 +1,4 @@
-# 🎓 CampusCollab — College Project Management Platform
+# 🎓 ProjectStack — College Project Management Platform
 
 > A collaborative platform for college students to share, discover, and contribute to real-time academic and personal projects — like LinkedIn for student projects.
 
@@ -6,7 +6,7 @@
 
 ## 📌 Overview
 
-**CampusCollab** is a full-stack web application designed for university students to:
+**ProjectStack** is a full-stack web application designed for university students to:
 - 🔍 Discover active tech and academic projects.
 - 🧠 Share their own projects and look for contributors.
 - 🫂 Collaborate with peers based on skills and interests.
@@ -22,7 +22,7 @@ Built as a group project by our class to streamline and enrich collaborative lea
 |-----------------|------------------------------------------------|
 | Frontend        | **Next.js (App Router)**, **Tailwind CSS**, **TypeScript** |
 | Backend         | **Next.js Server Actions**, **Prisma ORM**     |
-| Database        | **PostgreSQL (Supabase or Railway optional)**  |
+| Database        | **PostgreSQL with NEON DB**  |
 | Auth            | **NextAuth.js** (Credentials & OAuth)          |
 | Validation      | **Zod** + **React Hook Form**                  |
 | Styling         | **Tailwind CSS**, **ShadCN UI** (Optional)     |
@@ -37,9 +37,9 @@ Built as a group project by our class to streamline and enrich collaborative lea
 | Name | Role | GitHub |
 |------|------|--------|
 | Shikhar Shetty | Developer  | [@Shikhar-Shetty](https://github.com/Shikhar-Shetty) |
-| Teammate 1 | Developer | [@teammate1](https://github.com/teammate1) |
-| Teammate 2 | Developer | [@teammate2](https://github.com/teammate2) |
-| Teammate 3 | Developer | [@teammate3](https://github.com/teammate3) |
+| Sunpreeth | Developer | [@Sunpreeth](https://github.com/anysdefdefe) |
+| Vaishnav | Developer | [@vaish73](https://github.com/vaish73) |
+| Shravan Raj | Developer | [@Shravan-Raj](https://github.com/ShravanRajj) |
 | ... | ... | ... |
 
 ---
@@ -93,33 +93,33 @@ Built as a group project by our class to streamline and enrich collaborative lea
 
 ## Installation
 
-# 1. Clone the repo
+### 1. Clone the repo
 ```bash
-git clone https://github.com/yourusername/campus-collab.git
-cd campus-collab
+git clone https://github.com/yourusername/projectstack.git
+cd projectstack
 ```
 
-# 2. Install dependencies
+### 2. Install dependencies
 ```bash
 npm install
 ```
 
-# 3. Setup environment variables
+### 3. Setup environment variables
 ```bash
 cp .env.example .env
 ```
 
-# 4. Configure PostgreSQL connection in `.env`
+### 4. Configure PostgreSQL connection in `.env`
 ```bash
 DATABASE_URL="postgresql://..."
 ```
 
-# 5. Push schema
+### 5. Push schema
 ```bash
 npx prisma db push
 ```
 
-# 6. Start dev server
+### 6. Start dev server
 ```bash
 npm run dev
 ```
