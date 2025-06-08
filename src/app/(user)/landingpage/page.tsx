@@ -126,7 +126,6 @@ export default function AgencyLanding() {
         </div>
       </section>
 
-      {/* Services Section */}
       <section id="services" className="py-20 bg-slate-800">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="text-center space-y-4 mb-16">
@@ -204,7 +203,6 @@ export default function AgencyLanding() {
         </div>
       </section>
 
-      {/* About Section */}
       <section id="about" className="py-20 bg-gradient-to-r from-slate-900 to-slate-800">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -261,12 +259,11 @@ export default function AgencyLanding() {
         </div>
       </section>
 
-      {/* Collaboration Section */}
       <section id="collaboration" className="py-20 bg-slate-800">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="text-center space-y-4 mb-16">
             <Badge className="bg-blue-900/50 text-blue-300 border border-blue-700">Partnership</Badge>
-            <h2 className="text-3xl lg:text-5xl font-bold text-white">Let's Build Something Amazing Together</h2>
+            <h2 className="text-3xl lg:text-5xl font-bold text-white">Let&apos;s Build Something Amazing Together</h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
               We believe in collaborative partnerships that drive innovation and create lasting value for your business.
             </p>
@@ -304,7 +301,6 @@ export default function AgencyLanding() {
             ))}
           </div>
 
-          {/* Client Testimonials */}
           <div className="bg-gradient-to-r from-slate-900/80 to-slate-800/80 rounded-3xl p-8 lg:p-12 border border-slate-700">
             <div className="text-center mb-12">
               <h3 className="text-2xl lg:text-3xl font-bold mb-4 text-white">What Our Clients Say</h3>
@@ -331,8 +327,8 @@ export default function AgencyLanding() {
                   </div>
                 </div>
                 <p className="text-slate-300 italic">
-                  "DevCraft transformed our vision into reality. Their expertise and dedication exceeded our
-                  expectations."
+                  &qout;DevCraft transformed our vision into reality. Their expertise and dedication exceeded our
+                  expectations.&qout;
                 </p>
               </Card>
 
@@ -351,7 +347,7 @@ export default function AgencyLanding() {
                   </div>
                 </div>
                 <p className="text-slate-300 italic">
-                  "Outstanding technical expertise and project management. They delivered on time and within budget."
+                  &qoout;Outstanding technical expertise and project management. They delivered on time and within budget.&qout;
                 </p>
               </Card>
             </div>
@@ -359,7 +355,6 @@ export default function AgencyLanding() {
         </div>
       </section>
 
-      {/* Contact Section */}
       <section id="contact" className="py-20 bg-gradient-to-br from-slate-900 to-blue-900 text-white">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="grid lg:grid-cols-2 gap-12">
@@ -368,7 +363,7 @@ export default function AgencyLanding() {
                 <Badge className="bg-blue-800/50 text-blue-300 mb-4 border border-blue-700">Get In Touch</Badge>
                 <h2 className="text-3xl lg:text-5xl font-bold mb-6">Ready to Start Your Project?</h2>
                 <p className="text-xl text-slate-300">
-                  Let's discuss how we can help bring your ideas to life. Get in touch for a free consultation.
+                  Let&apos;s discuss how we can help bring your ideas to life. Get in touch for a free consultation.
                 </p>
               </div>
 
@@ -409,7 +404,7 @@ export default function AgencyLanding() {
               <CardHeader className="p-0 mb-6">
                 <CardTitle className="text-2xl text-white">Send us a message</CardTitle>
                 <CardDescription className="text-slate-300">
-                  Fill out the form below and we'll get back to you within 24 hours.
+                  Fill out the form below and we&apos;ll get back to you within 24 hours.
                 </CardDescription>
               </CardHeader>
 
@@ -475,7 +470,6 @@ export default function AgencyLanding() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="bg-slate-900 text-white py-12 border-t border-slate-800">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="grid md:grid-cols-4 gap-8">
