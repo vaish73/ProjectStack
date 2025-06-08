@@ -25,7 +25,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 export default function AgencyLanding() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-700">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="flex items-center justify-between h-16">
@@ -59,7 +58,6 @@ export default function AgencyLanding() {
         </div>
       </nav>
 
-      {/* Hero Section */}
       <section className="py-20 lg:py-32">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
