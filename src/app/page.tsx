@@ -24,7 +24,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 export default function AgencyLanding() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="min-w-full overflow-hidden relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      {/*Navbar*/}
       <nav className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-700">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="flex items-center justify-between h-16">
@@ -66,20 +67,20 @@ export default function AgencyLanding() {
                 <Badge className="bg-blue-900/50 text-blue-300 hover:bg-blue-900/50 border border-blue-700">
                   🚀 Transforming Ideas into Digital Reality
                 </Badge>
-                <h1 className="text-4xl lg:text-6xl font-bold leading-tight text-white">
+                <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold leading-tight text-white">
                   Build the{" "}
                   <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
                     Future
                   </span>{" "}
                   of Your Business
                 </h1>
-                <p className="text-xl text-slate-300 leading-relaxed">
-                  We craft cutting-edge digital solutions that drive growth, enhance user experience, and position your
+                <p className="md:text-xl text-sm  text-slate-300 leading-relaxed">
+                  We craft cutting-edge digital solutions that drive growth, enhance user experience,<br/> and position your
                   business at the forefront of innovation.
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-row gap-4">
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600"
@@ -210,7 +211,7 @@ export default function AgencyLanding() {
               <Badge className="bg-blue-900/50 text-blue-300 border border-blue-700">Why Choose Us</Badge>
               <h2 className="text-3xl lg:text-5xl font-bold text-white">Your Success is Our Mission</h2>
               <p className="text-lg text-slate-300">
-                With years of experience and a passion for innovation, we deliver solutions that not only meet your
+                With years of experience and a passion for innovation, we <br/> deliver solutions that not only meet your
                 current needs but also prepare you for future growth.
               </p>
 
@@ -354,7 +355,7 @@ export default function AgencyLanding() {
           </div>
         </div>
       </section>
-
+      {/*Contact Us - Section */}
       <section id="contact" className="py-20 bg-gradient-to-br from-slate-900 to-blue-900 text-white">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="grid lg:grid-cols-2 gap-12">
@@ -470,105 +471,8 @@ export default function AgencyLanding() {
         </div>
       </section>
 
-      <footer className="bg-slate-900 text-white py-12 border-t border-slate-800">
-        <div className="container mx-auto px-4 lg:px-6">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="space-y-4">
-              <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center">
-                  <Code className="w-5 h-5 text-white" />
-                </div>
-                <span className="text-xl font-bold">DevCraft</span>
-              </div>
-              <p className="text-slate-400">
-                Transforming ideas into digital reality with cutting-edge development solutions.
-              </p>
-            </div>
+      {/*Footer Component*/}
 
-            <div>
-              <h4 className="font-semibold mb-4">Services</h4>
-              <ul className="space-y-2 text-slate-400">
-                <li>
-                  <Link href="#" className="hover:text-blue-400 transition-colors">
-                    Web Development
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-blue-400 transition-colors">
-                    Mobile Apps
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-blue-400 transition-colors">
-                    Backend Development
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-blue-400 transition-colors">
-                    DevOps
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-4">Company</h4>
-              <ul className="space-y-2 text-slate-400">
-                <li>
-                  <Link href="#" className="hover:text-blue-400 transition-colors">
-                    About Us
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-blue-400 transition-colors">
-                    Our Team
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-blue-400 transition-colors">
-                    Careers
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-blue-400 transition-colors">
-                    Blog
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-4">Connect</h4>
-              <ul className="space-y-2 text-slate-400">
-                <li>
-                  <Link href="#" className="hover:text-blue-400 transition-colors">
-                    LinkedIn
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-blue-400 transition-colors">
-                    Twitter
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-blue-400 transition-colors">
-                    GitHub
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-blue-400 transition-colors">
-                    Dribbble
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-slate-800 mt-12 pt-8 text-center text-slate-400">
-            <p>&copy; {new Date().getFullYear()} DevCraft Agency. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }
