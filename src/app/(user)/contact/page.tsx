@@ -22,7 +22,7 @@ const page = () => {
                 <Badge className="bg-blue-800/50 text-blue-300 mb-4 border border-blue-700">Need Help?</Badge>
                 <h2 className="text-3xl lg:text-5xl font-bold mb-6">Facing Issues on ProjectStack?</h2>
                 <p className="text-xl text-slate-300">
-                  Whether it's application glitches, communication delays, or any technical hiccups — we're here to help you sort it out.
+                  Whether it&apos;s application glitches, communication delays, or any technical hiccups — we&apos;re here to help you sort it out.
                 </p>
               </div>
 
@@ -94,7 +94,7 @@ const page = () => {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="application">Application Not Showing</SelectItem>
-                      <SelectItem value="hiring">No Response After Getting Hired</SelectItem>
+                      <SelectItem value="hiring">No Response After Being Hired</SelectItem>
                       <SelectItem value="bug">Bug or Technical Issue</SelectItem>
                       <SelectItem value="profile">Profile / Project Not Updating</SelectItem>
                       <SelectItem value="other">Other</SelectItem>
@@ -105,7 +105,7 @@ const page = () => {
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">Describe the Issue</label>
                   <Textarea
-                    placeholder="Explain the issue with as much detail as possible..."
+                    placeholder="Please describe the issue with as much detail as possible..."
                     rows={4}
                     className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
                   />
