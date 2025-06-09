@@ -1,6 +1,4 @@
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import {
@@ -13,70 +11,30 @@ import {
   Shield,
   ArrowRight,
   CheckCircle,
-  Star,
-  Mail,
-  Phone,
-  MapPin,
 } from "lucide-react"
 import Image from "next/image"
-import Link from "next/link"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export default function AgencyLanding() {
   return (
     <div className="min-w-full overflow-hidden relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      {/*Navbar*/}
-      <nav className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-700">
-        <div className="container mx-auto px-4 lg:px-6">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center">
-                <Code className="w-5 h-5 text-white" />
-              </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
-                DevCraft
-              </span>
-            </div>
-
-            <div className="hidden md:flex items-center space-x-8">
-              <Link href="#services" className="text-slate-300 hover:text-blue-400 transition-colors">
-                Services
-              </Link>
-              <Link href="#about" className="text-slate-300 hover:text-blue-400 transition-colors">
-                About
-              </Link>
-              <Link href="#collaboration" className="text-slate-300 hover:text-blue-400 transition-colors">
-                Collaboration
-              </Link>
-              <Link href="#contact" className="text-slate-300 hover:text-blue-400 transition-colors">
-                Contact
-              </Link>
-              <Button className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600">
-                Get Started
-              </Button>
-            </div>
-          </div>
-        </div>
-      </nav>
-
       <section className="py-20 lg:py-32">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
                 <Badge className="bg-blue-900/50 text-blue-300 hover:bg-blue-900/50 border border-blue-700">
-                  🚀 Transforming Ideas into Digital Reality
+                  🚀 Transforming Ideas into Reality
                 </Badge>
                 <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold leading-tight text-white">
                   Build the{" "}
                   <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
                     Future
                   </span>{" "}
-                  of Your Business
+                  of Collaborations with students
                 </h1>
                 <p className="md:text-xl text-sm  text-slate-300 leading-relaxed">
-                  We craft cutting-edge digital solutions that drive growth, enhance user experience,<br/> and position your
-                  business at the forefront of innovation.
+                  ProjectStack is where student talent meets real-world innovation — post your projects,<br /> join teams based on your skills, or freelance your way into the future. Build. Collaborate. Get hired.
+
                 </p>
               </div>
 
@@ -91,7 +49,7 @@ export default function AgencyLanding() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white"
+                  className="border-slate-600 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white"
                 >
                   View Our Work
                 </Button>
@@ -99,15 +57,15 @@ export default function AgencyLanding() {
 
               <div className="flex items-center space-x-8 pt-8">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-white">500+</div>
-                  <div className="text-sm text-slate-400">Projects Delivered</div>
+                  <div className="text-2xl font-bold text-white">100+</div>
+                  <div className="text-sm text-slate-400">Projects Posted</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-white">98%</div>
                   <div className="text-sm text-slate-400">Client Satisfaction</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-white">24/7</div>
+                  <div className="text-2xl font-bold text-white">9-5</div>
                   <div className="text-sm text-slate-400">Support</div>
                 </div>
               </div>
@@ -130,10 +88,10 @@ export default function AgencyLanding() {
       <section id="services" className="py-20 bg-slate-800">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="text-center space-y-4 mb-16">
-            <Badge className="bg-blue-900/50 text-blue-300 border border-blue-700">Our Expertise</Badge>
-            <h2 className="text-3xl lg:text-5xl font-bold text-white">Comprehensive Development Services</h2>
+            <Badge className="bg-blue-900/50 text-blue-300 border border-blue-700">What You Can Build</Badge>
+            <h2 className="text-3xl lg:text-5xl font-bold text-white">Collaborate on Real-World Tech Projects</h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-              From concept to deployment, we provide end-to-end solutions that scale with your business needs.
+              ProjectStack connects students to innovative projects across modern tech stacks — post, join, or freelance based on your skills and passion.
             </p>
           </div>
 
@@ -141,40 +99,45 @@ export default function AgencyLanding() {
             {[
               {
                 icon: Globe,
-                title: "Web Development",
+                title: "Web Development Projects",
                 description:
-                  "Modern, responsive websites built with cutting-edge technologies like React, Next.js, and TypeScript.",
-                features: ["Responsive Design", "SEO Optimized", "Fast Performance"],
+                  "Work on full-stack apps using cutting-edge tech like Next.js, React, and TypeScript in a team environment.",
+                features: ["Frontend & Backend", "API Integration", "Real-time Collaboration"],
               },
               {
                 icon: Smartphone,
-                title: "Mobile Development",
-                description: "Native and cross-platform mobile apps that deliver exceptional user experiences.",
-                features: ["iOS & Android", "React Native", "Flutter"],
+                title: "Mobile App Projects",
+                description:
+                  "Join cross-platform app builds with Flutter or React Native and bring creative mobile solutions to life.",
+                features: ["iOS & Android", "Live Prototyping", "UI/UX Integration"],
               },
               {
                 icon: Database,
-                title: "Backend Development",
-                description: "Scalable server-side solutions with robust APIs and database architecture.",
-                features: ["RESTful APIs", "Database Design", "Cloud Integration"],
+                title: "Backend Engineering",
+                description:
+                  "Design scalable server-side logic, RESTful/GraphQL APIs, and databases that power real apps.",
+                features: ["Node.js & Express", "MongoDB / PostgreSQL", "Auth & Security"],
               },
               {
                 icon: Shield,
-                title: "DevOps & Security",
-                description: "Secure deployment pipelines and infrastructure management for reliable operations.",
-                features: ["CI/CD Pipelines", "Security Audits", "Cloud Deployment"],
+                title: "DevOps & Cloud Projects",
+                description:
+                  "Help teams deploy faster with CI/CD, containerization, and cloud infrastructure via real-world tasks.",
+                features: ["Docker & GitHub Actions", "AWS / GCP", "Monitoring & Logs"],
               },
               {
                 icon: Zap,
-                title: "Performance Optimization",
-                description: "Speed up your applications with advanced optimization techniques and monitoring.",
-                features: ["Code Optimization", "Caching Strategies", "Monitoring"],
+                title: "AI & ML Integrations",
+                description:
+                  "Contribute to projects that leverage AI for automation, recommendations, and user personalization.",
+                features: ["LLMs & APIs", "Python & TensorFlow", "AI-Powered UX"],
               },
               {
                 icon: Users,
-                title: "Consulting & Strategy",
-                description: "Technical consulting to help you make informed decisions about your technology stack.",
-                features: ["Architecture Review", "Technology Selection", "Best Practices"],
+                title: "Open Collaboration & Freelancing",
+                description:
+                  "Post your own projects or freelance on others — earn experience, build networks, and grow your portfolio.",
+                features: ["Skill-Based Matching", "Peer Reviews", "Hire or Get Hired"],
               },
             ].map((service, index) => (
               <Card
@@ -204,23 +167,24 @@ export default function AgencyLanding() {
         </div>
       </section>
 
+
       <section id="about" className="py-20 bg-gradient-to-r from-slate-900 to-slate-800">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <Badge className="bg-blue-900/50 text-blue-300 border border-blue-700">Why Choose Us</Badge>
-              <h2 className="text-3xl lg:text-5xl font-bold text-white">Your Success is Our Mission</h2>
+              <Badge className="bg-blue-900/50 text-blue-300 border border-blue-700">Why ProjectStack</Badge>
+              <h2 className="text-3xl lg:text-5xl font-bold text-white">Build. Collaborate. Get Hired.</h2>
               <p className="text-lg text-slate-300">
-                With years of experience and a passion for innovation, we <br/> deliver solutions that not only meet your
-                current needs but also prepare you for future growth.
+                ProjectStack is the launchpad for student developers — a place to build real-world projects,<br />
+                grow your portfolio, connect with like-minded peers, and land freelance gigs or team roles based on your skillset.
               </p>
 
               <div className="space-y-4">
                 {[
-                  "Agile development methodology for faster delivery",
-                  "Dedicated project managers for seamless communication",
-                  "Post-launch support and maintenance included",
-                  "Transparent pricing with no hidden costs",
+                  "Skill-based project matchmaking for students and teams",
+                  "Create or join projects across full-stack, mobile, DevOps, and AI domains",
+                  "Collaborate, get reviews, and level up your portfolio",
+                  "Earn freelance opportunities and build hiring potential from day one",
                 ].map((point, index) => (
                   <div key={index} className="flex items-center">
                     <CheckCircle className="w-5 h-5 text-green-400 mr-3" />
@@ -230,29 +194,29 @@ export default function AgencyLanding() {
               </div>
 
               <Button className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600">
-                Learn More About Us
+                Explore Projects
               </Button>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-4">
                 <Card className="p-6 text-center border border-slate-700 shadow-lg bg-slate-800/50 backdrop-blur-sm">
-                  <div className="text-3xl font-bold text-blue-400">5+</div>
-                  <div className="text-sm text-slate-400">Years Experience</div>
+                  <div className="text-3xl font-bold text-blue-400">100+</div>
+                  <div className="text-sm text-slate-400">Student Developers</div>
                 </Card>
                 <Card className="p-6 text-center border border-slate-700 shadow-lg bg-slate-800/50 backdrop-blur-sm">
                   <div className="text-3xl font-bold text-blue-400">50+</div>
-                  <div className="text-sm text-slate-400">Team Members</div>
+                  <div className="text-sm text-slate-400">Live Projects</div>
                 </Card>
               </div>
               <div className="space-y-4 mt-8">
                 <Card className="p-6 text-center border border-slate-700 shadow-lg bg-slate-800/50 backdrop-blur-sm">
-                  <div className="text-3xl font-bold text-blue-400">100+</div>
-                  <div className="text-sm text-slate-400">Happy Clients</div>
+                  <div className="text-3xl font-bold text-blue-400">1+</div>
+                  <div className="text-sm text-slate-400">Colleges Represented</div>
                 </Card>
                 <Card className="p-6 text-center border border-slate-700 shadow-lg bg-slate-800/50 backdrop-blur-sm">
-                  <div className="text-3xl font-bold text-blue-400">24/7</div>
-                  <div className="text-sm text-slate-400">Support</div>
+                  <div className="text-3xl font-bold text-blue-400">100%</div>
+                  <div className="text-sm text-slate-400">Free & Student-Friendly</div>
                 </Card>
               </div>
             </div>
@@ -260,13 +224,14 @@ export default function AgencyLanding() {
         </div>
       </section>
 
+
       <section id="collaboration" className="py-20 bg-slate-800">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="text-center space-y-4 mb-16">
             <Badge className="bg-blue-900/50 text-blue-300 border border-blue-700">Partnership</Badge>
             <h2 className="text-3xl lg:text-5xl font-bold text-white">Let&apos;s Build Something Amazing Together</h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-              We believe in collaborative partnerships that drive innovation and create lasting value for your business.
+              We believe in collaborative partnerships that drive innovation and create lasting value for your Projects.
             </p>
           </div>
 
@@ -274,19 +239,21 @@ export default function AgencyLanding() {
             {[
               {
                 step: "01",
-                title: "Discovery & Planning",
+                title: "Post or Explore Projects",
                 description:
-                  "We start by understanding your vision, goals, and requirements through detailed consultation.",
+                  "Kickstart your journey by either creating a project idea or browsing existing ones that match your skills and interests.",
               },
               {
                 step: "02",
-                title: "Design & Development",
-                description: "Our team creates prototypes and develops your solution using industry best practices.",
+                title: "Collaborate & Build",
+                description:
+                  "Join forces with like-minded students, contribute code, manage tasks, and grow your skills through hands-on development.",
               },
               {
                 step: "03",
-                title: "Launch & Support",
-                description: "We deploy your project and provide ongoing support to ensure continued success.",
+                title: "Showcase & Get Noticed",
+                description:
+                  "Add completed projects to your portfolio, receive peer reviews, and open doors to freelance gigs or internships.",
               },
             ].map((step, index) => (
               <Card
@@ -302,176 +269,9 @@ export default function AgencyLanding() {
             ))}
           </div>
 
-          <div className="bg-gradient-to-r from-slate-900/80 to-slate-800/80 rounded-3xl p-8 lg:p-12 border border-slate-700">
-            <div className="text-center mb-12">
-              <h3 className="text-2xl lg:text-3xl font-bold mb-4 text-white">What Our Clients Say</h3>
-              <div className="flex justify-center space-x-1 mb-6">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              <Card className="p-6 border border-slate-700 shadow-lg bg-slate-800/50 backdrop-blur-sm">
-                <div className="flex items-center mb-4">
-                  <Image
-                    src="/placeholder.svg?height=50&width=50"
-                    alt="Client"
-                    width={50}
-                    height={50}
-                    className="rounded-full mr-4"
-                  />
-                  <div>
-                    <div className="font-semibold text-white">Sarah Johnson</div>
-                    <div className="text-sm text-slate-400">CEO, TechStart Inc.</div>
-                  </div>
-                </div>
-                <p className="text-slate-300 italic">
-                  &qout;DevCraft transformed our vision into reality. Their expertise and dedication exceeded our
-                  expectations.&qout;
-                </p>
-              </Card>
-
-              <Card className="p-6 border border-slate-700 shadow-lg bg-slate-800/50 backdrop-blur-sm">
-                <div className="flex items-center mb-4">
-                  <Image
-                    src="/placeholder.svg?height=50&width=50"
-                    alt="Client"
-                    width={50}
-                    height={50}
-                    className="rounded-full mr-4"
-                  />
-                  <div>
-                    <div className="font-semibold text-white">Michael Chen</div>
-                    <div className="text-sm text-slate-400">CTO, InnovateLab</div>
-                  </div>
-                </div>
-                <p className="text-slate-300 italic">
-                  &qoout;Outstanding technical expertise and project management. They delivered on time and within budget.&qout;
-                </p>
-              </Card>
-            </div>
-          </div>
         </div>
       </section>
       {/*Contact Us - Section */}
-      <section id="contact" className="py-20 bg-gradient-to-br from-slate-900 to-blue-900 text-white">
-        <div className="container mx-auto px-4 lg:px-6">
-          <div className="grid lg:grid-cols-2 gap-12">
-            <div className="space-y-8">
-              <div>
-                <Badge className="bg-blue-800/50 text-blue-300 mb-4 border border-blue-700">Get In Touch</Badge>
-                <h2 className="text-3xl lg:text-5xl font-bold mb-6">Ready to Start Your Project?</h2>
-                <p className="text-xl text-slate-300">
-                  Let&apos;s discuss how we can help bring your ideas to life. Get in touch for a free consultation.
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-                    <Mail className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <div className="font-semibold">Email Us</div>
-                    <div className="text-slate-300">hello@devcraft.agency</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-                    <Phone className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <div className="font-semibold">Call Us</div>
-                    <div className="text-slate-300">+1 (555) 123-4567</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-                    <MapPin className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <div className="font-semibold">Visit Us</div>
-                    <div className="text-slate-300">123 Innovation Street, Tech City, TC 12345</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <Card className="p-8 border border-slate-700 shadow-2xl bg-slate-800/50 backdrop-blur-sm">
-              <CardHeader className="p-0 mb-6">
-                <CardTitle className="text-2xl text-white">Send us a message</CardTitle>
-                <CardDescription className="text-slate-300">
-                  Fill out the form below and we&apos;ll get back to you within 24 hours.
-                </CardDescription>
-              </CardHeader>
-
-              <form className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">First Name</label>
-                    <Input
-                      placeholder="John"
-                      className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Last Name</label>
-                    <Input
-                      placeholder="Doe"
-                      className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">Email</label>
-                  <Input
-                    type="email"
-                    placeholder="john@example.com"
-                    className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">Project Type</label>
-                  <Select>
-                    <SelectTrigger className="w-full bg-slate-700 border-slate-600 text-white">
-                      <SelectValue placeholder="Select a project type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="web">Web Development</SelectItem>
-                      <SelectItem value="mobile">Mobile App</SelectItem>
-                      <SelectItem value="backend">Backend Development</SelectItem>
-                      <SelectItem value="fullstack">Full Stack Solution</SelectItem>
-                      <SelectItem value="consulting">Consulting</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">Project Details</label>
-                  <Textarea
-                    placeholder="Tell us about your project requirements, timeline, and budget..."
-                    rows={4}
-                    className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
-                  />
-                </div>
-
-                <Button className="w-full bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600">
-                  Send Message
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </form>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/*Footer Component*/}
 
     </div>
   )
