@@ -120,10 +120,3 @@
     @apply bg-background text-foreground;
   }
 }
-
-.inputField{
-  
-  border: 0.1px solid white;
-  color: rgb(0, 0, 0);
-  
-}
