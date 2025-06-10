@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { onboardingSchema, OnboardingType } from "@/lib/schema";
+import Image from "next/image";
 
 const Page = () => {
   const [previewImage, setPreviewImage] = useState("/profileuploadpic.jpg");
@@ -40,12 +41,12 @@ const Page = () => {
     }
     console.log([...formData.entries()]);
     if (fileInputRef.current) {
-      fileInputRef.current.value = ""; 
+      fileInputRef.current.value = "";
     }
     setPreviewImage("/profileuploadpic.jpg");
     reset();
   };
-    const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
 
   useEffect(() => {
@@ -64,7 +65,13 @@ const Page = () => {
   return (
     <main className="flex min-h-screen bg-gradient-to-br from-slate-900 to-blue-600 font-sans text-white">
       <div className="hidden md:w-full md:flex flex-col justify-center items-center text-center space-y-1 relative">
-        <img src="/logo.png" alt="Logo" className="w-80 h-80 -mt-60" />
+        <Image
+          src="/logo.png"
+          alt="Logo"
+          width={320}
+          height={320}
+          className="w-80 h-80 -mt-60"
+        />
         <div className="-mt-18">
           <h1 className="text-3xl tracking-widest font-extrabold">
             Project<span className="text-sky-500">Stack</span>
@@ -86,9 +93,11 @@ const Page = () => {
           <div className="flex flex-col items-center space-y-1 mb-4">
             <label htmlFor="propic" className="relative cursor-pointer group">
               <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-white/10">
-                <img
+                <Image
                   src={previewImage}
                   alt="Profile"
+                  width={96}
+                  height={96}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -98,10 +107,10 @@ const Page = () => {
                 accept="image/*"
                 className="hidden"
                 {...register("image")}
-                  ref={(e) => {
-                    register("image").ref(e); 
-                    fileInputRef.current = e; 
-                  }}
+                ref={(e) => {
+                  register("image").ref(e);
+                  fileInputRef.current = e;
+                }}
               />
             </label>
             <label htmlFor="propic" className="cursor-pointer text-sm text-white">
