@@ -29,15 +29,13 @@ const Page = () => {
 
   const onSubmit = (data: OnboardingType) => {
     const formData = new FormData();
-    for (const key in data) {
-      const value = (data as any)[key];
-
-      if (key === "image" && value?.[0]) {
+    Object.entries(data).forEach(([key, value]) => {
+      if (key === "image" && value instanceof FileList && value[0]) {
         formData.append("image", value[0]);
       } else {
         formData.append(key, String(value ?? ""));
       }
-    }
+    });
     console.log([...formData.entries()]);
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
