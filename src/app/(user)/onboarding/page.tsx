@@ -99,8 +99,8 @@ const Page = () => {
                 className="hidden"
                 {...register("image")}
                   ref={(e) => {
-                    register("image").ref(e); // 👈 hook-form gets the ref
-                    fileInputRef.current = e; // 👈 you also get the DOM node
+                    register("image").ref(e); 
+                    fileInputRef.current = e; 
                   }}
               />
             </label>
