@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.1.1",
     "@prisma/client": "^6.9.0",
     "@prisma/extension-accelerate": "^2.0.1",
     "@radix-ui/react-select": "^2.2.5",
@@ -21,7 +22,9 @@
     "prisma": "^6.9.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "tailwind-merge": "^3.3.0"
+    "react-hook-form": "^7.57.0",
+    "tailwind-merge": "^3.3.0",
+    "zod": "^3.25.57"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
