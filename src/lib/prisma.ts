@@ -5,15 +5,14 @@ const globalForPrisma = globalThis as unknown as {
   prisma: ReturnType<PrismaClient['$extends']> | undefined;
 };
 
-let prisma: ReturnType<PrismaClient['$extends']>;
-
-if (process.env.NODE_ENV === 'production') {
-  prisma = new PrismaClient().$extends(withAccelerate());
-} else {
-  if (!globalForPrisma.prisma) {
-    globalForPrisma.prisma = new PrismaClient().$extends(withAccelerate());
-  }
-  prisma = globalForPrisma.prisma;
+function createPrismaClient() {
+  const client = new PrismaClient();
+  return client.$extends(withAccelerate());
 }
+
+const prisma =
+  process.env.NODE_ENV === 'production'
+    ? createPrismaClient()
+    : globalForPrisma.prisma ?? (globalForPrisma.prisma = createPrismaClient());
 
 export default prisma;
