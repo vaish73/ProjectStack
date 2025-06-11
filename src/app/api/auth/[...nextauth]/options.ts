@@ -16,11 +16,21 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async jwt({ token, user }) {
-      if (user) {
+    if (user) {
         token.sub = user.id;
         token.username = user.username;
-      }
-      return token;
+        token.onboarded = user.onboarded;
+    } else {
+        const dbUser = await prisma.user.findUnique({
+        where: { id: token.sub },
+        });
+        if (dbUser) {
+        token.username = dbUser.username ?? undefined;
+        token.onboarded = dbUser.onboarded ?? false;
+        }
+    }
+
+    return token;
     },
     async session({ session, token }) {
       if (token) {
@@ -28,6 +38,7 @@ export const authOptions: NextAuthOptions = {
           ...session.user,
           id: token.sub,
           username: token.username,
+          onboarded: token.onboarded
         };
       }
       return session;

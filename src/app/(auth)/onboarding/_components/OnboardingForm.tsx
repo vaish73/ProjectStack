@@ -1,12 +1,16 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, JSX } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { onboardingSchema, OnboardingType } from "@/lib/schema";
 import Image from "next/image";
+import { completeOnboarding } from "../../../../../actions/onboarding";
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
-const Page = () => {
+export default function OnboardingForm() {
+  const router = useRouter()
   const [previewImage, setPreviewImage] = useState("/profileuploadpic.jpg");
 
   const {
@@ -27,7 +31,7 @@ const Page = () => {
     },
   });
 
-  const onSubmit = (data: OnboardingType) => {
+  const onSubmit = async(data: OnboardingType) => {
     const formData = new FormData();
     Object.entries(data).forEach(([key, value]) => {
       if (key === "image" && value instanceof FileList && value[0]) {
@@ -40,6 +44,9 @@ const Page = () => {
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
+    await completeOnboarding();
+    await signIn("github", { redirect: false });
+    router.push("/dashboard");
     setPreviewImage("/profileuploadpic.jpg");
     reset();
   };
@@ -202,4 +209,3 @@ const Page = () => {
   );
 };
 
-export default Page;

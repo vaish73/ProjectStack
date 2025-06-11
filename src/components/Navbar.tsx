@@ -1,9 +1,16 @@
+"use client"
 import { Code } from 'lucide-react'
 import React from 'react'
 import Link from 'next/link';
 import { Button } from './ui/button';
+import { signOut, useSession } from "next-auth/react";
 
 const Navbar = () => {
+    const {data: session, status} = useSession();
+    console.log(session);
+    
+    if(status=="loading") return null;
+    
     return (
         <div className="min-w-full overflow-hidden relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
             <nav className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-700">
@@ -22,9 +29,20 @@ const Navbar = () => {
                             <Link href="/contact" className="text-slate-300 hover:text-blue-400 transition-colors">
                                 Contact
                             </Link>
-                            <Button className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600">
-                                Get Started
-                            </Button>
+                            {session ? (
+                                <>
+                                    <Button onClick={() => signOut({callbackUrl: "/"})}>Sign Out</Button>
+                                </>
+                            ): (
+                                <Link
+                                    href="/sign-in">
+                                <Button className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600">
+                                          Get Started
+                                </Button>
+                                  
+                                </Link>
+                            )}
+
                         </div>
                     </div>
                 </div>
