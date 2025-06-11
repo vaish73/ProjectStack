@@ -19,15 +19,6 @@ const Navbar = () => {
                         </div>
 
                         <div className="hidden md:flex items-center space-x-8">
-                            <Link href="#services" className="text-slate-300 hover:text-blue-400 transition-colors">
-                                Services
-                            </Link>
-                            <Link href="#about" className="text-slate-300 hover:text-blue-400 transition-colors">
-                                About
-                            </Link>
-                            <Link href="#collaboration" className="text-slate-300 hover:text-blue-400 transition-colors">
-                                Collaboration
-                            </Link>
                             <Link href="/contact" className="text-slate-300 hover:text-blue-400 transition-colors">
                                 Contact
                             </Link>
