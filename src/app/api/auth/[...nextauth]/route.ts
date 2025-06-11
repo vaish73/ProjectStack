@@ -1,9 +1,12 @@
 import NextAuth from "next-auth";
 import { authOptions } from "./options";
 
-const handler = async (req: Request, res: Response) => {
+export const GET = async (req: Request) => {
   const options = await authOptions();
-  return NextAuth(options)(req, res);  
+  return NextAuth(options)(req);
 };
 
-export { handler as GET, handler as POST };
+export const POST = async (req: Request) => {
+  const options = await authOptions();
+  return NextAuth(options)(req); 
+};
