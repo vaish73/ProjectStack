@@ -1,13 +1,7 @@
-import React from 'react'
+"use client";
 
-function MainLayout({children}: Readonly<{
-    children: React.ReactNode;
-}>) {
-  return (
-    <div>
-        {children}
-    </div>
-  )
+import ClientLayout from "@/app/_components/ClientLayout";
+
+export default function UserLayout({ children }: { children: React.ReactNode }) {
+  return <ClientLayout>{children}</ClientLayout>;
 }
-
-export default MainLayout
