@@ -47,7 +47,7 @@ const Page = () => {
           </div>
 
           <button
-            onClick={() => signIn("github")}
+            onClick={() => signIn("github", {callbackUrl: "/dashboard"})}
             className="flex cursor-pointer scale-100 items-center gap-3 bg-white text-black px-6 py-3 rounded-xl font-semibold shadow-lg hover:bg-gray-200 transition-all duration-200"
           >
             <Github className="w-5 h-5" />
