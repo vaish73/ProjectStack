@@ -4,6 +4,7 @@ import React from 'react'
 import Link from 'next/link';
 import { Button } from './ui/button';
 import { signOut, useSession } from "next-auth/react";
+import  Image  from 'next/image';
 
 const Navbar = () => {
     const {data: session, status} = useSession();
@@ -17,10 +18,14 @@ const Navbar = () => {
                 <div className="container mx-auto px-4 lg:px-6">
                     <div className="flex items-center justify-between h-16">
                         <div className="flex items-center space-x-2">
-                            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center">
-                                <Code className="w-5 h-5 text-white" />
-                            </div>
-                            <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+                        <Image
+                            src={"/logo-copy.png"}
+                            width={60}
+                            height={60}
+                            alt="Not-Found"
+                            />
+
+                            <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
                                 DevCraft
                             </span>
                         </div>
