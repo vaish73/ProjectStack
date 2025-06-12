@@ -57,8 +57,19 @@ export default function AgencyLanding() {
                   View Our Work
                 </Button>
               </div>
+            </div>
 
-              <div className="flex items-center space-x-8 pt-8">
+            <div className="relative flex justify-center items-center">
+              <div className="absolute flex justify-center items-center inset-0 bg-gradient-to-r from-blue-300 to-indigo-400 rounded-3xl blur-3xl opacity-20"></div>
+              <Image
+                src="/HeroImage.jpeg"
+                alt="Digital Innovation"
+                width={400}
+                height={400}
+                className="relative rounded-full shadow-6xl inset-1"
+              />
+            </div>
+              <div className="flex items-center md:justify-around justify-center space-x-8 pt-8">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-white">100+</div>
                   <div className="text-sm text-slate-400">Projects Posted</div>
@@ -72,18 +83,6 @@ export default function AgencyLanding() {
                   <div className="text-sm text-slate-400">Support</div>
                 </div>
               </div>
-            </div>
-
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-300 to-indigo-400 rounded-3xl blur-3xl opacity-20"></div>
-              <Image
-                src="/HeroImage.jpeg"
-                alt="Digital Innovation"
-                width={500}
-                height={600}
-                className="relative rounded-full shadow-6xl inset-1"
-              />
-            </div>
           </div>
         </div>
       </section>
