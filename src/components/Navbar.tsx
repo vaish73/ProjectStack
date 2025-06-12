@@ -33,18 +33,18 @@ const Navbar = () => {
                         </Link>
 
 
-                        <div className="hidden md:flex items-center space-x-8">
+                        <div className="flex items-center space-x-8">
 
                             {session ? (
                                 <>
-                                    <Link href="/dashboard" className="text-slate-300 hover:text-blue-400 transition-colors">
+                                    <Link href="/dashboard" className="text-slate-300 text-sm hover:text-blue-400 transition-colors">
                                         Dashboard
                                     </Link>
-                                    <Link href="/contact" className="text-slate-300 hover:text-blue-400 transition-colors">
+                                    <Link href="/contact" className="text-slate-300 text-sm hover:text-blue-400 transition-colors">
                                         Contact
                                     </Link>
                                     <button
-                                    className='text-neutral-200  outline-0 transition-all duration-300 border px-3 py-1 rounded-lg hover:bg-white/10 hover:border-blue-500 hover:text-blue-200 cursor-pointer'
+                                    className='text-neutral-200 text-sm  outline-0 transition-all duration-300 border px-3 py-1 rounded-lg hover:bg-white/10 hover:border-blue-500 hover:text-blue-200 cursor-pointer'
                                     onClick={() => signOut({ callbackUrl: "/" })}>Sign Out</button>
                                 </>
                             ) : (
