@@ -12,6 +12,7 @@ import {
   CheckCircle,
 } from "lucide-react"
 import Image from "next/image"
+import Link from 'next/link';
 
 export default function AgencyLanding() {
   return (
@@ -38,13 +39,16 @@ export default function AgencyLanding() {
               </div>
 
               <div className="flex flex-row gap-4">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600"
-                >
-                  Start Your Project
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
+                <Link href="/sign-in">
+                  <Button
+                    size="lg"
+                    className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600"
+                  >
+                    Get Started
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </Link>
+
                 <Button
                   size="lg"
                   variant="outline"
@@ -71,13 +75,13 @@ export default function AgencyLanding() {
             </div>
 
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-3xl blur-3xl opacity-20"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-300 to-indigo-400 rounded-3xl blur-3xl opacity-20"></div>
               <Image
-                src="/placeholder.svg?height=600&width=600"
+                src="/HeroImage.jpeg"
                 alt="Digital Innovation"
-                width={600}
+                width={500}
                 height={600}
-                className="relative rounded-3xl shadow-2xl"
+                className="relative rounded-full shadow-6xl inset-1"
               />
             </div>
           </div>

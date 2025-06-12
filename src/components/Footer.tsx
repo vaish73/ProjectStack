@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Code } from 'lucide-react'
+import Image from 'next/image'
 
 const Footer = () => {
   return (
@@ -10,9 +10,12 @@ const Footer = () => {
           
           <div className="space-y-4 flex flex-col items-center  md:items-start">
             <div className="flex items-center space-x-2 justify-center md:justify-start">
-              <div className="w-6 h-6 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center">
-                <Code className="w-4 h-4 text-white" />
-              </div>
+            <Image
+                src={"/logo-copy.png"}
+                width={35}
+                height={35}
+                alt="Not-Found"
+                />
               <span className="text-xl font-bold">ProjectStack</span>
             </div>
             <p className="text-slate-400 max-w-sm">
