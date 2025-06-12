@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Upload, User, Code, GraduationCap, Users, ArrowRight, Camera } from "lucide-react";
+import { User, Code, GraduationCap, Users, ArrowRight, Camera } from "lucide-react";
 
 export default function OnboardingForm() {
   const router = useRouter();
