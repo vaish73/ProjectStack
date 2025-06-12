@@ -14,7 +14,7 @@ import { User, Code, GraduationCap, Users, ArrowRight, Camera } from "lucide-rea
 
 export default function OnboardingForm() {
   const router = useRouter();
-  const [previewImage, setPreviewImage] = useState("/profileuploadpic.jpg");
+  const [previewImage, setPreviewImage] = useState("/pandada.jpeg");
 
   const {
     register,
@@ -156,7 +156,7 @@ export default function OnboardingForm() {
                       src="/logo-copy.png"
                       alt="Logo"
                       width={40}
-                      height={80}
+                      height={40}
                       className="relative rounded-full object-contain"
                     />
                   </div>
@@ -181,7 +181,14 @@ export default function OnboardingForm() {
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                   <div className="flex flex-col items-center space-y-3">
                     <label htmlFor="propic" className="relative cursor-pointer group">
-                      <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-slate-600 group-hover:border-blue-400 transition-colors">
+                      <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-slate-600 group-hover:border-blue-400 transition-colors">
+                        <Image
+                          src={previewImage}
+                          alt="Profile"
+                          width={50}
+                          height={50}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                       <div className="absolute inset-0 bg-black/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                         <Camera className="w-6 h-6 text-white" />
