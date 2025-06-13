@@ -21,13 +21,13 @@ const Navbar = () => {
 
                                 <Image
                                     src={"/logo-copy.png"}
-                                    width={40}
-                                    height={40}
+                                    width={35}
+                                    height={35}
                                     alt="Not-Found"
                                 />
 
-                                <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
-                                    DevCraft
+                                <span className="text-2xl font-bold text-neutral-300 bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text ">
+                                    Project<span className="font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Stack</span>
                                 </span>
                             </div>
                         </Link>
