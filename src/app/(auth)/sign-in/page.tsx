@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { signIn } from "next-auth/react";
 import * as icons from "lucide-react";
 import Image from 'next/image';
@@ -9,6 +9,8 @@ import { Badge } from "@/components/ui/badge";
 const { Github, ArrowRight, Users, Code, Zap } = icons;
 
 const Page = () => {
+  const [loading, setLoading] = useState(false);
+
   return (
     <div className="min-w-full overflow-hidden relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 min-h-screen">
       <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full blur-3xl opacity-10"></div>
@@ -120,12 +122,24 @@ const Page = () => {
 
             <div className="space-y-4 items-center flex flex-col">
               <button
-                onClick={() => signIn("github", {callbackUrl: "/dashboard"})}
-                className="group w-[80%] flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
+                onClick={() => {
+                  signIn("github", {callbackUrl: "/dashboard"})
+                  setLoading(true)}}
+                className="group w-[80%] cursor-pointer flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
               >
                 <Github className="w-5 h-5" />
-                Sign in with GitHub
-                <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                Sign in with GitHub {
+                  loading && (
+                    <>
+                      <div className="w-4 h-4 border-4 border-blue-500 border-dashed duration-500 rounded-full animate-spin"></div>
+                    </>
+                  )
+                }
+                {!loading && (
+                  <>
+                    <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                  </>
+                )}
               </button>
               
               <p className="text-xs text-slate-500 text-center">

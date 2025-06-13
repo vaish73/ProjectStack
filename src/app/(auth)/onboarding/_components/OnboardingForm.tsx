@@ -310,7 +310,7 @@ export default function OnboardingForm() {
                   <div className="pt-4">
                     <button 
                       type="submit" 
-                      className="group w-full flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white p-3 rounded-4xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
+                      className="group w-full flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white p-3 rounded-4xl font-semibold shadow-lg hover:shadow-xl transition-all cursor-pointer duration-300 transform hover:scale-[1.02]"
                     >
                       Complete Setup
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

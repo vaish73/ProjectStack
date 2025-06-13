@@ -12,7 +12,6 @@ export async function middleware(request: NextRequest) {
     });
     
     console.log("TOKEN FROM MIDDLEWARE:", token);
-    console.log("Onboarded:", token?.onboarded);
 
     const url = request.nextUrl;
 

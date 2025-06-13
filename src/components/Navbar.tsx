@@ -1,15 +1,18 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link';
 import { Button } from './ui/button';
 import { signOut, useSession } from "next-auth/react";
 import Image from 'next/image';
 
 const Navbar = () => {
+    const [loading, setLoading] = useState(false);
+
     const { data: session, status } = useSession();
     console.log(session);
 
     if (status == "loading") return null;
+
 
     return (
         <div className="min-w-full overflow-hidden relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
@@ -50,8 +53,14 @@ const Navbar = () => {
                             ) : (
                                 <Link
                                     href="/sign-in">
-                                    <Button className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600">
-                                        Get Started
+                                    <Button 
+                                        onClick={() => setLoading(true)}
+                                        className="bg-gradient-to-r cursor-pointer from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600">
+                                            Get Started {loading && (
+                                                <>
+                                                    <div className="w-4 h-4 border-4 border-blue-500 border-dashed duration-500 rounded-full animate-spin"></div>
+                                                </>
+                                            )}
                                     </Button>
 
                                 </Link>

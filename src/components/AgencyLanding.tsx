@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -13,8 +14,10 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 import Link from 'next/link';
+import { useState } from "react";
 
 export default function AgencyLanding() {
+  const [loading, setLoading] = useState(false);
   return (
     <div className="min-w-full overflow-hidden relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       <section className="py-20 lg:py-32">
@@ -42,7 +45,7 @@ export default function AgencyLanding() {
                 <Link href="/sign-in">
                   <Button
                     size="lg"
-                    className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600"
+                    className="bg-gradient-to-r cursor-pointer from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600"
                   >
                     Get Started
                     <ArrowRight className="ml-2 w-4 h-4" />
@@ -52,7 +55,7 @@ export default function AgencyLanding() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-slate-600 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white"
+                  className="border-slate-600 cursor-pointer  bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white"
                 >
                   View Our Work
                 </Button>
