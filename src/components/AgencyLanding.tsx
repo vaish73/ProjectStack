@@ -45,10 +45,19 @@ export default function AgencyLanding() {
                 <Link href="/sign-in">
                   <Button
                     size="lg"
+                    onClick={()=> setLoading(true)}
                     className="bg-gradient-to-r cursor-pointer from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600"
                   >
-                    Get Started
-                    <ArrowRight className="ml-2 w-4 h-4" />
+                    Get Started {loading && (
+                      <>
+                        <div className="w-4 h-4 border-4 border-blue-500 border-dashed duration-500 rounded-full animate-spin"></div>
+                      </>
+                    )}
+                    {!loading && (
+                      <>
+                        <ArrowRight className="ml-2 w-4 h-4" />
+                      </>
+                    )}
                   </Button>
                 </Link>
 
