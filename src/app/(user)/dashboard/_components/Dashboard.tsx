@@ -10,7 +10,7 @@ import { User } from 'lucide-react';
 const data = [
   {
     title: "AI Resume Enhancer",
-    description: "An AI-powered platform that analyzes resumes and provides improvement suggestions using GPT.",
+    description: "An AI-powered platform that analyzes resumes and provides improvement suggestions using GPT. An more powerfull features to be added along the way",
     skills: ["TypeScript", "Next.js", "PostgreSQL", "OpenAI API"],
     username: "Sunpreeth",
     startDate: "May 2025",
@@ -71,7 +71,7 @@ function Dashboard() {
                       {item.title}
                     </h2>
                     <p className='text-slate-300 leading-relaxed'>
-                      {item.description}
+                      {item.description.split(" ").slice(0, 10).join(" ") + "..."}
                     </p>
                     <div className='flex flex-wrap gap-2 mt-2'>
                       {item.skills.map((skill, idx) => (
@@ -82,7 +82,7 @@ function Dashboard() {
                     </div>
                   </div>
                 </div>
-                <div className='flex flex-col justify-center items-center md:items-end flex-1 space-y-4 text-center md:text-right'>
+                <div className='flex flex-col justify-center items-center  lg:mr-6  space-y-4 text-center md:text-right'>
                   <div className='relative w-16 h-16'>
                     <div className="absolute bg-gradient-to-r from-blue-300 to-indigo-400 rounded-full blur-lg opacity-30"></div>
                     <div className='relative w-16 h-16 rounded-full border-2 border-slate-600 overflow-hidden'>
@@ -148,8 +148,9 @@ function Dashboard() {
                   <div className="relative w-20 h-20 bg-slate-700 border border-slate-500 rounded-full flex items-center justify-center text-slate-300">
                     <User className='w-8 h-8'/>
                   </div>
+                  <h3 className="font-medium text-lg mt-4 md:mt-0 md:mb-12">{popup.username}</h3>
                 </div>
-                <h3 className="font-medium text-lg mb-15">{popup.username}</h3>
+                <div className="mb-15 h-20"></div>
                 <button className="self-end bg-sky-800 hover:bg-sky-700 cursor-pointer text-center text-white px-5 pt-1 pb-2 rounded-lg shadow-md transition-all">
                   Apply
                 </button>
