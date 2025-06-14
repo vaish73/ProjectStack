@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { X } from 'lucide-react';
 import { CircleArrowRight } from 'lucide-react';
-import { User } from 'lucide-react';
+import { User, Search } from 'lucide-react';
 
 
 const data = [
@@ -57,10 +57,32 @@ const data = [
 
 function Dashboard() {
   const [popup, setPopup] = useState<null | typeof data[0]>(null);
+  const [filtered, setFiltered] = useState("");
+  const filteredArray = data.filter((item)=>{
+     const titleMatch = item.title.toLowerCase().includes(filtered.toLowerCase());
+     const skillMatch = item.skills?.some(skill => skill.toLowerCase().includes(filtered.toLowerCase()));
+     const userMatch = item.username?.toLowerCase().includes(filtered.toLowerCase());
+     return titleMatch || skillMatch || userMatch;
+
+  })
   return (
     <div className='min-w-full overflow-hidden'>
+      <div className="w-full flex justify-end items-end text-white">
+        <div className="flex items-center relative w-full max-w-sm">
+          <input
+            type="text"
+            onChange={(e) => setFiltered(e.target.value)}
+            placeholder="Search..."
+            className=" w-[80%] pl-10 pr-4 py-2 rounded-4xl text-white placeholder-gray-400 bg-[#1f2937] border border-gray-600 focus:border-blue-600 focus:outline-none transition duration-300"
+          />
+          <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
+            <Search/>
+          </div>
+        </div>
+      </div>
+
       <div className=' md:mx-[12%] relative  min-h-screen p-6'>
-        {data.map((item, index) => (
+        {filteredArray.map((item, index) => (
           <Card key={index} className='border mb-8 border-slate-700 bg-slate-800/50 md:h-[300px]  hover:shadow-2xl transition-all duration-300'>
             <CardContent className='p-6'>
               <div className='flex flex-col md:flex-row gap-6'>
