@@ -59,9 +59,10 @@ function Dashboard() {
   const [popup, setPopup] = useState<null | typeof data[0]>(null);
   const [filtered, setFiltered] = useState("");
   const filteredArray = data.filter((item)=>{
-     const titleMatch = item.title.toLowerCase().includes(filtered.toLowerCase());
-     const skillMatch = item.skills?.some(skill => skill.toLowerCase().includes(filtered.toLowerCase()));
-     const userMatch = item.username?.toLowerCase().includes(filtered.toLowerCase());
+    const normalize = (item: string): string => item.toLowerCase().replace(/[\s.,!?-]/g, '');
+    const titleMatch = normalize(item.title).includes(normalize(filtered));
+     const skillMatch = item.skills.some((skill:string) => normalize(skill).includes(normalize(filtered)));
+     const userMatch = normalize(item.username).toLowerCase().includes(normalize(filtered));
      return titleMatch || skillMatch || userMatch;
 
   })
