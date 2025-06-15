@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { X } from 'lucide-react';
 import { CircleArrowRight } from 'lucide-react';
 import { User, Search } from 'lucide-react';
-
+import { CircleCheckBig } from 'lucide-react';
 
 const data = [
   {
@@ -55,9 +55,12 @@ const data = [
   }
 ];
 
+
 function Dashboard() {
   const [popup, setPopup] = useState<null | typeof data[0]>(null);
   const [filtered, setFiltered] = useState("");
+  const [loading,setLoading] = useState(false);
+  const [done, setDone] = useState<null | string>(null);
   const filteredArray = data.filter((item)=>{
     const normalize = (item: string): string => item.toLowerCase().replace(/[\s.,!?-]/g, '');
     const titleMatch = normalize(item.title).includes(normalize(filtered));
@@ -66,6 +69,15 @@ function Dashboard() {
      return titleMatch || skillMatch || userMatch;
 
   })
+
+  const handleChange = (e: any) => {
+    setLoading(true);
+    setDone(null);
+    setTimeout(() => {
+      setDone(popup?.title??"")
+      setLoading(false);
+    }, 2000);
+  }
   return (
     <div className='min-w-full overflow-hidden'>
       <div className="w-full flex justify-end items-end text-white">
@@ -174,8 +186,22 @@ function Dashboard() {
                   <h3 className="font-medium text-lg mt-4 md:mt-0 md:mb-12">{popup.username}</h3>
                 </div>
                 <div className="mb-15 h-20"></div>
-                <button className="self-end bg-sky-800 hover:bg-sky-700 cursor-pointer text-center text-white px-5 pt-1 pb-2 rounded-lg shadow-md transition-all">
-                  Apply
+                <button onClick={handleChange} className="self-end flex gap-2 justify-center items-center bg-sky-800 hover:bg-sky-700 cursor-pointer text-center text-white px-5 pt-1 pb-2 rounded-lg shadow-md transition-all">
+                  {loading ? (
+                    <div className="items-center flex gap-2">
+                      Apply
+                      <div className="w-4 h-4 border-4 border-blue-300 border-dashed duration-800 rounded-full animate-spin"></div>
+                    </div>
+                  ):(done == popup?.title ? (
+                    <>
+                      <div>Applied</div>
+                      <CircleCheckBig className='w-5 pt-[2px] h-6 text-blue-300' />
+                    </>
+                  ):(
+                    <div>
+                      Apply
+                    </div>
+                  ))}
                 </button>
               </div>
             </div>
