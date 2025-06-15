@@ -67,10 +67,9 @@ function Dashboard() {
      const skillMatch = item.skills.some((skill:string) => normalize(skill).includes(normalize(filtered)));
      const userMatch = normalize(item.username).toLowerCase().includes(normalize(filtered));
      return titleMatch || skillMatch || userMatch;
-
   })
 
-  const handleChange = (e: any) => {
+  const handleChange = () => {
     setLoading(true);
     setDone(null);
     setTimeout(() => {
