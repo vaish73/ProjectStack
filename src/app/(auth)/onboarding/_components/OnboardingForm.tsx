@@ -58,6 +58,7 @@ export default function OnboardingForm({ user }: OnboardedProps) {
       router.push("/dashboard");
       reset();
     } catch (error) {
+      console.log("Error", error);
       throw new Error("An Error Occurred when creating the profile")
     } finally {
       setLoading(false);
