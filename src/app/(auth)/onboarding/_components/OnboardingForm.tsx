@@ -39,7 +39,7 @@ export default function OnboardingForm({ user }: OnboardedProps) {
     },
   });
 
-  const onSubmit = async (data: OnboardingType) => {
+  const onSubmit = async () => {
     setLoading(true);
     const formData = new FormData();
 
