@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { onboardingSchema, OnboardingType } from "@/lib/schema";
 import Image from "next/image";
-import { completeOnboarding } from "../../../../../actions/onboarding";
+import { completeOnboarding, newProfile } from "../../../../../actions/onboarding";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { Badge } from "@/components/ui/badge";
@@ -14,7 +14,7 @@ import { User, Code, GraduationCap, Users, ArrowRight } from "lucide-react";
 
 type OnboardedProps = {
   user: {
-    image: string
+    image: string,
   }
 }
 
@@ -39,15 +39,29 @@ export default function OnboardingForm({ user }: OnboardedProps) {
     },
   });
 
-  const onSubmit = async () => {
-    setLoading(true);
-    const formData = new FormData();
-
-    console.log([...formData.entries()]);
-    await completeOnboarding();
-    await signIn("github", { redirect: false });
-    router.push("/dashboard");
-    reset();
+  const onSubmit = async (data:OnboardingType) => {
+    const rawSkills = data.skills;
+    const skillsArray = rawSkills
+    .split(/[,\s]+/)
+    .map((s:string) => s.trim())
+    .filter(Boolean)
+    console.log("Skills Array", skillsArray);
+    try {
+      setLoading(true);
+      await newProfile({
+        ...data, 
+        skills: skillsArray,
+        bio: data.bio ?? null
+      })
+      await completeOnboarding();
+      await signIn("github", { redirect: false });
+      router.push("/dashboard");
+      reset();
+    } catch (error) {
+      throw new Error("An Error Occurred when creating the profile")
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

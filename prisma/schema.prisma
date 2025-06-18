@@ -64,7 +64,7 @@ model Profile {
   section String
   branch  String
   year    String
-  skills  String
+  skills  String[]
   bio     String?
   userId  String  @unique
   user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
