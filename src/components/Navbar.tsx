@@ -1,23 +1,38 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link';
 import { Button } from './ui/button';
 import { signOut, useSession } from "next-auth/react";
 import Image from 'next/image';
+import { Headset, LayoutDashboard, LogOut, UserRound } from 'lucide-react';
 
 const Navbar = () => {
     const [loading, setLoading] = useState(false);
-
+    const [drop, setDrop] = useState(false);
     const { data: session, status } = useSession();
     console.log(session);
+
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            if (!target.closest(".profile-dropdown")) {
+                setDrop(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     if (status == "loading") return null;
 
 
+
     return (
-        <div className="min-w-full overflow-hidden relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        <div className="min-w-full relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
             <nav className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-700">
-                <div className="container mx-auto px-4 lg:px-6">
+                <div className="container items-center mx-auto px-4 lg:px-6">
                     <div className="flex items-center justify-between h-16">
                         <Link href="/">
                             <div className="flex items-center space-x-2">
@@ -40,27 +55,76 @@ const Navbar = () => {
 
                             {session ? (
                                 <>
-                                    <Link href="/dashboard" className="text-slate-300 text-sm hover:text-blue-400 transition-colors">
-                                        Dashboard
+                                    <Link href="/dashboard" className="text-slate-300 flex items-center gap-2 text-sm hover:text-blue-400 transition-colors">
+                                        <div className='md:flex hidden'>
+                                            Dashboard 
+                                        </div>
+                                      <div className='block md:hidden'><LayoutDashboard/></div>
+
                                     </Link>
-                                    <Link href="/contact" className="text-slate-300 text-sm hover:text-blue-400 transition-colors">
-                                        Contact
+                                    <Link href="/contact" className="text-slate-300 flex text-sm hover:text-blue-400 transition-colors">
+                                        <div className='md:flex hidden'>
+                                            Contact
+                                        </div>  
+                                        <div className='block md:hidden'><Headset/></div>
+
                                     </Link>
-                                    <button
-                                    className='text-neutral-200 text-sm  outline-0 transition-all duration-300 border px-3 py-1 rounded-lg hover:bg-white/10 hover:border-blue-500 hover:text-blue-200 cursor-pointer'
-                                    onClick={() => signOut({ callbackUrl: "/" })}>Sign Out</button>
+                                    <div className="relative z-[9999] profile-dropdown items-center pt-2">
+                                        <button
+                                            onClick={() => setDrop((prev) => !prev)}
+                                            className="rounded-full focus:outline-none"
+                                        >
+                                            <Image
+                                                src={session?.user?.image || "/default-profile.png"}
+                                                width={32}
+                                                height={32}
+                                                alt="Profile"
+                                                className="rounded-full cursor-pointer"
+                                            />
+                                        </button>
+
+                                        {drop && (
+                                            <div className="absolute flex flex-col right-0 mt-2 w-40 bg-slate-800 border border-slate-700 rounded-lg shadow-lg z-50">
+                                                <Link
+                                                    href="/profile"
+                                                    className="px-4 py-2 justify-between  flex gap-4 items-center text-sm text-neutral-200 hover:bg-slate-700 transition-colors"
+                                                    onClick={() => setDrop(false)}
+                                                >
+                                                    Profile 
+                                                    <div>
+                                                        <UserRound className='w-5'/>
+                                                    </div>
+                                                </Link>
+                                                <hr className=" border-slate-600"/>
+                                                <button
+                                                    onClick={() => {
+                                                        console.log("Signing Out...");
+                                                        signOut({ callbackUrl: "/" });
+                                                        setDrop(false);
+                                                    }}
+                                                    className="w-full mr-0.5 rounded-b-lg flex gap-2 cursor-pointer justify-between items-center text-left px-4 py-2 text-sm text-red-400 hover:bg-slate-700 transition-colors"
+                                                >
+                                                    Sign Out 
+                                                    <div>
+                                                        <LogOut className='w-5'/>
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        )}
+                                    </div>
+
                                 </>
                             ) : (
                                 <Link
                                     href="/sign-in">
-                                    <Button 
+                                    <Button
                                         onClick={() => setLoading(true)}
                                         className="bg-gradient-to-r cursor-pointer from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600">
-                                            Get Started {loading && (
-                                                <>
-                                                    <div className="w-4 h-4 border-4 border-blue-500 border-dashed duration-500 rounded-full animate-spin"></div>
-                                                </>
-                                            )}
+                                        Get Started {loading && (
+                                            <>
+                                                <div className="w-4 h-4 border-4 border-blue-500 border-dashed duration-500 rounded-full animate-spin"></div>
+                                            </>
+                                        )}
                                     </Button>
 
                                 </Link>

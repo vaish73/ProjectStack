@@ -5,11 +5,11 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/options';
 
 const page = async() => {
   const session = await getServerSession(authOptions);
-  console.log("ONBOARDED:", session?.user?.onboarded); // should log true or false
+  console.log("ONBOARDED:", session?.user?.onboarded); 
 
   return (
     <div>
-      <OnboardingForm/>
+      <OnboardingForm user={{ image: session?.user?.image ?? '' }} />
     </div>
   )
 }

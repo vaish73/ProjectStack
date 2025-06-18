@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { onboardingSchema, OnboardingType } from "@/lib/schema";
@@ -10,16 +10,21 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { User, Code, GraduationCap, Users, ArrowRight, Camera } from "lucide-react";
+import { User, Code, GraduationCap, Users, ArrowRight } from "lucide-react";
 
-export default function OnboardingForm() {
+type OnboardedProps = {
+  user: {
+    image: string
+  }
+}
+
+export default function OnboardingForm({ user }: OnboardedProps) {
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const [previewImage, setPreviewImage] = useState("/pandada.jpeg");
 
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors },
   } = useForm<OnboardingType>({
@@ -35,45 +40,20 @@ export default function OnboardingForm() {
   });
 
   const onSubmit = async (data: OnboardingType) => {
+    setLoading(true);
     const formData = new FormData();
-    Object.entries(data).forEach(([key, value]) => {
-      if (key === "image" && value instanceof FileList && value[0]) {
-        formData.append("image", value[0]);
-      } else {
-        formData.append(key, String(value ?? ""));
-      }
-    });
+
     console.log([...formData.entries()]);
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
     await completeOnboarding();
     await signIn("github", { redirect: false });
     router.push("/dashboard");
-    setPreviewImage("/profileuploadpic.jpg");
     reset();
   };
-
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
-
-  useEffect(() => {
-    const subscription = watch((value) => {
-      const file = value.image?.[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onloadend = () => setPreviewImage(reader.result as string);
-        reader.readAsDataURL(file);
-      }
-    });
-
-    return () => subscription.unsubscribe();
-  }, [watch]);
 
   return (
     <div className="min-w-full overflow-hidden relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 min-h-screen">
       <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full blur-3xl opacity-10"></div>
       <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-full blur-3xl opacity-10"></div>
-      
       <div className="relative w-full z-10 min-h-screen flex">
         <div className="hidden md:flex w-full flex-col justify-center items-center p-16 space-y-8">
           <div className="text-center space-y-6">
@@ -90,7 +70,7 @@ export default function OnboardingForm() {
             
             <div className="space-y-4">
               <Badge className="bg-blue-900/50 text-blue-300 hover:bg-blue-900/50 border border-blue-700">
-                🚀 Almost There!
+                🚀 Almost There! 
               </Badge>
               
               <h1 className="text-4xl lg:text-5xl font-bold leading-tight text-white">
@@ -183,30 +163,17 @@ export default function OnboardingForm() {
                     <label htmlFor="propic" className="relative cursor-pointer group">
                       <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-slate-600 group-hover:border-blue-400 transition-colors">
                         <Image
-                          src={previewImage}
+                          src={`${user.image}`}
                           alt="Profile"
-                          width={50}
                           height={50}
+                          width={50}
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <div className="absolute inset-0 bg-black/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <Camera className="w-6 h-6 text-white" />
-                      </div>
-                      <input
-                        type="file"
-                        id="propic"
-                        accept="image/*"
-                        className="hidden"
-                        {...register("image")}
-                        ref={(e) => {
-                          register("image").ref(e);
-                          fileInputRef.current = e;
-                        }}
-                      />
+        
                     </label>
-                    <label htmlFor="propic" className="cursor-pointer text-sm text-blue-400 hover:text-blue-300 transition-colors">
-                      Upload Profile Picture
+                    <label htmlFor="propic" className=" text-sm text-blue-200 transition-colors">
+                      Profile
                     </label>
                   </div>
 
@@ -312,8 +279,11 @@ export default function OnboardingForm() {
                       type="submit" 
                       className="group w-full flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white p-3 rounded-4xl font-semibold shadow-lg hover:shadow-xl transition-all cursor-pointer duration-300 transform hover:scale-[1.02]"
                     >
-                      Complete Setup
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      Complete Setup {loading ? (
+                        <div className="w-4 h-4 border-4 border-blue-300 border-dashed duration-800 rounded-full animate-spin"></div>
+                      ):(
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      )}
                     </button>
                   </div>
                 </form>
