@@ -208,7 +208,7 @@ export default function Component() {
                   <div className="space-y-3">
                     {profileData.skills ? (
                       <div className="flex flex-wrap gap-2">
-                        {profileData.skills.split(/[, ]/).map((skill, index) => (
+                        {profileData.skills.split(/[\s,]+/).map((skill, index) => (
                           <Badge
                             key={index}
                             variant="secondary"
