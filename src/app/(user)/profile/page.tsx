@@ -38,6 +38,9 @@ export default function Component() {
   }
 
   const handleInputChange = (field: string, value: string) => {
+    console.log(value);
+    const upSkill = value.split(/[, ]/)
+
     setEditData((prev) => ({
       ...prev,
       [field]: value,
@@ -46,23 +49,20 @@ export default function Component() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-      {/* Header */}
-      <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm">
+
+      <header className="bg-gray-900/50 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-3">
-                <img src="/public/logo.png" alt="ProjectStack Logo" className="w-20 h-20 object-contain" />
-                <h1 className="text-xl font-bold">ProjectStack</h1>
-              </div>
+          <div className="flex items-center mt-3 justify-between">
+            <div className="flex text-2xl font-bold items-center gap-3">
+              Profile
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 b">
               {!isEditing ? (
                 <Button
                   onClick={handleEdit}
                   variant="outline"
                   size="sm"
-                  className="border-gray-600 text-gray-300 hover:bg-gray-800"
+                  className="border-gray-600 bg-gray-900 text-gray-300 hover:text-gray-300 cursor-pointer hover:bg-gray-800"
                 >
                   <Edit className="w-4 h-4 mr-2" />
                   Edit Profile
@@ -77,7 +77,7 @@ export default function Component() {
                     onClick={handleCancel}
                     variant="outline"
                     size="sm"
-                    className="border-gray-600 text-gray-300 hover:bg-gray-800"
+                    className="border-gray-600  bg-gray-900 text-gray-300 hover:text-gray-300 cursor-pointer hover:bg-gray-800"
                   >
                     <X className="w-4 h-4 mr-2" />
                     Cancel
@@ -211,7 +211,7 @@ export default function Component() {
                   <div className="space-y-3">
                     {profileData.skills ? (
                       <div className="flex flex-wrap gap-2">
-                        {profileData.skills.split(",").map((skill, index) => (
+                        {profileData.skills.split(/[, ]/).map((skill, index) => (
                           <Badge
                             key={index}
                             variant="secondary"
@@ -246,8 +246,6 @@ export default function Component() {
             </Card>
           </div>
 
-          {/* Projects Section Placeholder */}
-          {/* Completed Projects Section */}
           <Card className="bg-gray-800 border-gray-700 mt-6">
             <CardHeader>
               <div className="flex items-center gap-2">
@@ -264,7 +262,6 @@ export default function Component() {
             </CardContent>
           </Card>
 
-          {/* Pending Projects Section */}
           <Card className="bg-gray-800 border-gray-700 mt-6">
             <CardHeader>
               <div className="flex items-center gap-2">
