@@ -38,9 +38,6 @@ export default function Component() {
   }
 
   const handleInputChange = (field: string, value: string) => {
-    console.log(value);
-    const upSkill = value.split(/[, ]/)
-
     setEditData((prev) => ({
       ...prev,
       [field]: value,
