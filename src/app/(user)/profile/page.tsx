@@ -1,15 +1,18 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import { User, Code, Calendar, Users, BookOpen, FileText, Edit, Save, X } from "lucide-react"
+import { Code, Calendar, Users, BookOpen, FileText, Edit, Save, X } from "lucide-react"
+import { useSession } from "next-auth/react"
+import  Image  from 'next/image';
 
 export default function Component() {
+
   const [isEditing, setIsEditing] = useState(false)
   const [profileData, setProfileData] = useState({
     name: "",
@@ -19,7 +22,14 @@ export default function Component() {
     skills: "",
     bio: "",
   })
-
+  const { data: session, status  } = useSession();
+  useEffect(() => {
+    if(status === "authenticated"){
+      console.log("Session:", session?.user);
+      
+    }
+  }, [session, status]);
+  
   const [editData, setEditData] = useState(profileData)
 
   const handleEdit = () => {
@@ -94,42 +104,48 @@ export default function Component() {
             <Card className="bg-gray-800 border-gray-700">
               <CardHeader className="pb-4">
                 <div className="flex items-start gap-6">
-                  <div className="w-24 h-24 bg-gray-700 rounded-full flex items-center justify-center">
-                    <User className="w-12 h-12 text-gray-400" />
+                  <div className="1-24 h-24 rounded-full flex items-center justify-center">
+                      <Image
+                          src={session?.user?.image || "/pandada.jpeg"}
+                          width={90}
+                          height={90}
+                          alt="Profile"
+                          className="rounded-full cursor-pointer"
+                      />
                   </div>
                   <div className="flex-1">
                     {isEditing ? (
                       <div className="space-y-4">
-                        <Input
-                          value={editData.name}
-                          onChange={(e) => handleInputChange("name", e.target.value)}
-                          placeholder="Enter your name"
-                          className="text-2xl font-bold bg-gray-700 border-gray-600 text-white placeholder-gray-400"
-                        />
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                          <Input
-                            value={editData.branch}
-                            onChange={(e) => handleInputChange("branch", e.target.value)}
-                            placeholder="Branch (e.g., CSE)"
-                            className="bg-gray-700 border-gray-600 text-white placeholder-gray-400"
-                          />
-                          <Input
-                            value={editData.year}
-                            onChange={(e) => handleInputChange("year", e.target.value)}
-                            placeholder="Year (e.g., 3rd Year)"
-                            className="bg-gray-700 border-gray-600 text-white placeholder-gray-400"
-                          />
-                          <Input
-                            value={editData.section}
-                            onChange={(e) => handleInputChange("section", e.target.value)}
-                            placeholder="Section (e.g., A)"
-                            className="bg-gray-700 border-gray-600 text-white placeholder-gray-400"
-                          />
+                        <div className="flex flex-col gap-3">
+                          <div className="flex w-full">
+                            <h2 className="text-2xl  font-bold text-white mb-2">{session?.user?.name || "Your Name"}</h2>
+                          </div>
+                          <div className="flex flex-col space-y-5  md:flex-row space-x-6">
+                            <Input
+                              value={editData.branch}
+                              onChange={(e) => handleInputChange("branch", e.target.value)}
+                              placeholder="Branch (e.g., CSE)"
+                              className="bg-gray-700 border-gray-600 text-white placeholder-gray-400"
+                            />
+                            <Input
+                              value={editData.year}
+                              onChange={(e) => handleInputChange("year", e.target.value)}
+                              placeholder="Year (e.g., 3rd Year)"
+                              className="bg-gray-700 border-gray-600 text-white placeholder-gray-400"
+                            />
+                            <Input
+                              value={editData.section}
+                              onChange={(e) => handleInputChange("section", e.target.value)}
+                              placeholder="Section (e.g., A)"
+                              className="bg-gray-700 border-gray-600 text-white placeholder-gray-400"
+                            />
+                          </div>
+
                         </div>
                       </div>
                     ) : (
                       <>
-                        <h2 className="text-2xl font-bold text-white mb-2">{profileData.name || "Your Name"}</h2>
+                        <h2 className="text-2xl font-bold text-white mb-2">{session?.user?.name || "Your Name"}</h2>
                         <div className="flex flex-wrap gap-2 text-sm text-gray-300">
                           <div className="flex items-center gap-1">
                             <BookOpen className="w-4 h-4" />
