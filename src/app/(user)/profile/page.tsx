@@ -1,4 +1,3 @@
-import React from 'react'
 import Profile from './_components/Profile';
 import { getProfile } from '../../../../actions/onboarding';
 
