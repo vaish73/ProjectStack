@@ -32,6 +32,19 @@ export async function newProfile(formData: ProfileData) {
     return profile;
 }
 
+export async function getProfile(){
+    const session = await getServerSession(authOptions);
+    if(!session?.user.email) throw new Error("Unauthorized Access");
+    const user = await prisma.user.findUnique({
+        where: { email: session.user.email}
+    })
+    if(!user) throw new Error("User not found");
+    const profile = await prisma.profile.findUnique({
+        where: {userId: user.id}
+    })
+    return profile;
+}
+
 export async function completeOnboarding(){
     const session = await getServerSession(authOptions);
 
