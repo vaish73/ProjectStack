@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -9,9 +10,10 @@ import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Code, Calendar, Users, BookOpen, FileText, Edit, Save, X } from "lucide-react"
 import { useSession } from "next-auth/react"
-import  Image  from 'next/image';
+import Image from 'next/image';
+import { editProfile } from "../../../../../actions/profile"
 
-type ProfileProps = {
+export type ProfileProps = {
   id: string;
   name: string;
   image?: string | null;
@@ -23,67 +25,68 @@ type ProfileProps = {
   userId: string;
 };
 
-type EditableProfile = Pick<ProfileProps, "name" | "branch" | "year" | "section" | "skills"> & {
-  bio: string;
+type ProfileEditProps = {
+  section?: string;
+  branch?: string;
+  year?: string;
+  skills?: string[];
+  bio?: string | null;
 };
 
-export default function Profile({profile} : {profile: ProfileProps}) {
+type FormValues = {
+  section: string;
+  branch: string;
+  year: string;
+  bio: string;
+  skills: string; // comma-separated
+};
 
-  const [isEditing, setIsEditing] = useState(false)
-    const [profileData, setProfileData] = useState<EditableProfile>({
-    name: profile.name,
-    branch: profile.branch,
-    year: profile.year,
-    section: profile.section,
-    skills: profile.skills,
-    bio: profile.bio ?? "",
-    });
+export default function Profile({ profile }: { profile: ProfileProps }) {
+  const { data: session, status } = useSession();
+  const [isEditing, setIsEditing] = useState(false);
+  const [updatedProfile, setUpdatedProfile] = useState<ProfileProps>(profile);
 
-  const { data: session, status  } = useSession();
+  const { register, handleSubmit, reset, watch } = useForm<FormValues>({
+    defaultValues: {
+      section: profile.section,
+      branch: profile.branch,
+      year: profile.year,
+      bio: profile.bio ?? "",
+      skills: profile.skills.join(", "),
+    },
+  });
+
+  const onSubmit = async (data: FormValues) => {
+    const updatedFields: ProfileEditProps = {
+      section: data.section,
+      branch: data.branch,
+      year: data.year,
+      bio: data.bio,
+      skills: data.skills.split(",").map(s => s.trim()).filter(Boolean),
+    };
+    await editProfile(updatedFields);
+    setUpdatedProfile(prev => ({ ...prev, ...updatedFields, skills: updatedFields.skills ?? prev.skills }));
+    setIsEditing(false);
+  };
+
   useEffect(() => {
-    if(status === "authenticated"){
+    if (status === "authenticated") {
       console.log("Session:", session?.user);
-      
     }
   }, [session, status]);
-  
-  const [editData, setEditData] = useState(profileData)
-
-  const handleEdit = () => {
-    setEditData(profileData)
-    setIsEditing(true)
-  }
-
-  const handleSave = () => {
-    setProfileData(editData)
-    setIsEditing(false)
-  }
-
-  const handleCancel = () => {
-    setEditData(profileData)
-    setIsEditing(false)
-  }
-
-  const handleInputChange = (field: string, value: string) => {
-    setEditData((prev) => ({
-      ...prev,
-      [field]: value,
-    }))
-  }
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-
       <header className="bg-gray-900/50 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center mt-3 justify-between">
             <div className="flex text-2xl font-bold items-center gap-3">
               Profile
             </div>
-            <div className="flex gap-2 b">
+            <div className="flex gap-2">
               {!isEditing ? (
                 <Button
-                  onClick={handleEdit}
+                  onClick={() => setIsEditing(true)}
                   variant="outline"
                   size="sm"
                   className="border-gray-600 bg-gray-900 text-gray-300 hover:text-gray-300 cursor-pointer hover:bg-gray-800"
@@ -93,15 +96,15 @@ export default function Profile({profile} : {profile: ProfileProps}) {
                 </Button>
               ) : (
                 <>
-                  <Button onClick={handleSave} size="sm" className="bg-green-600 hover:bg-green-700">
+                  <Button onClick={handleSubmit(onSubmit)} size="sm" className="bg-green-600 hover:bg-green-700">
                     <Save className="w-4 h-4 mr-2" />
                     Save
                   </Button>
                   <Button
-                    onClick={handleCancel}
+                    onClick={() => { reset(); setIsEditing(false); }}
                     variant="outline"
                     size="sm"
-                    className="border-gray-600  bg-gray-900 text-gray-300 hover:text-gray-300 cursor-pointer hover:bg-gray-800"
+                    className="border-gray-600 bg-gray-900 text-gray-300 hover:text-gray-300 cursor-pointer hover:bg-gray-800"
                   >
                     <X className="w-4 h-4 mr-2" />
                     Cancel
@@ -113,82 +116,43 @@ export default function Profile({profile} : {profile: ProfileProps}) {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
-          {/* Profile Header */}
-          <div className="mb-8">
-            <Card className="bg-gray-800 border-gray-700">
-              <CardHeader className="pb-4">
-                <div className="flex items-start gap-6">
-                  <div className="1-24 h-24 rounded-full flex items-center justify-center">
-                      <Image
-                          src={session?.user?.image || "/pandada.jpeg"}
-                          width={90}
-                          height={90}
-                          alt="Profile"
-                          className="rounded-full cursor-pointer"
-                      />
-                  </div>
-                  <div className="flex-1">
-                    {isEditing ? (
-                      <div className="space-y-4">
-                        <div className="flex flex-col gap-3">
-                          <div className="flex w-full">
-                            <h2 className="text-2xl  font-bold text-white mb-2">{session?.user?.name || "Your Name"}</h2>
-                          </div>
-                          <div className="flex flex-col space-y-5  md:flex-row space-x-6">
-                            <Input
-                              value={editData.branch}
-                              onChange={(e) => handleInputChange("branch", e.target.value)}
-                              placeholder="Branch (e.g., CSE)"
-                              className="bg-gray-700 border-gray-600 text-white placeholder-gray-400"
-                            />
-                            <Input
-                              value={editData.year}
-                              onChange={(e) => handleInputChange("year", e.target.value)}
-                              placeholder="Year (e.g., 3rd Year)"
-                              className="bg-gray-700 border-gray-600 text-white placeholder-gray-400"
-                            />
-                            <Input
-                              value={editData.section}
-                              onChange={(e) => handleInputChange("section", e.target.value)}
-                              placeholder="Section (e.g., A)"
-                              className="bg-gray-700 border-gray-600 text-white placeholder-gray-400"
-                            />
-                          </div>
-
-                        </div>
-                      </div>
-                    ) : (
-                      <>
-                        <h2 className="text-2xl font-bold text-white mb-2">{profileData.name || "Your Name"}</h2>
-                        <div className="flex flex-wrap gap-2 text-sm text-gray-300">
-                          <div className="flex items-center gap-1">
-                            <BookOpen className="w-4 h-4" />
-                            <span>{profileData.branch || "Branch"}</span>
-                          </div>
-                          <Separator orientation="vertical" className="h-4 bg-gray-600" />
-                          <div className="flex items-center gap-1">
-                            <Calendar className="w-4 h-4" />
-                            <span>{profileData.year || "Year"}</span>
-                          </div>
-                          <Separator orientation="vertical" className="h-4 bg-gray-600" />
-                          <div className="flex items-center gap-1">
-                            <Users className="w-4 h-4" />
-                            <span>{profileData.section || "Section"}</span>
-                          </div>
-                        </div>
-                      </>
-                    )}
-                  </div>
+          <Card className="bg-gray-800 border-gray-700">
+            <CardHeader className="pb-4">
+              <div className="flex items-start gap-6">
+                <div className="w-24 h-24 rounded-full overflow-hidden">
+                  <Image
+                    src={session?.user?.image || "/pandada.jpeg"}
+                    width={90}
+                    height={90}
+                    alt="Profile"
+                    className="rounded-full object-cover"
+                  />
                 </div>
-              </CardHeader>
-            </Card>
-          </div>
+                <div className="flex-1">
+                  <h2 className="text-2xl font-bold text-white mb-2">{session?.user?.name || updatedProfile.name}</h2>
+                  {isEditing ? (
+                    <div className="flex flex-col md:flex-row gap-4">
+                      <Input {...register("branch")} placeholder="Branch" className="bg-gray-700 border-gray-600 text-white" />
+                      <Input {...register("year")} placeholder="Year" className="bg-gray-700 border-gray-600 text-white" />
+                      <Input {...register("section")} placeholder="Section" className="bg-gray-700 border-gray-600 text-white" />
+                    </div>
+                  ) : (
+                    <div className="flex flex-wrap gap-2 text-sm text-gray-300">
+                      <div className="flex items-center gap-1"><BookOpen className="w-4 h-4" /> {updatedProfile.branch}</div>
+                      <Separator orientation="vertical" className="h-4 bg-gray-600" />
+                      <div className="flex items-center gap-1"><Calendar className="w-4 h-4" /> {updatedProfile.year}</div>
+                      <Separator orientation="vertical" className="h-4 bg-gray-600" />
+                      <div className="flex items-center gap-1"><Users className="w-4 h-4" /> {updatedProfile.section}</div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </CardHeader>
+          </Card>
 
-          <div className="grid gap-6 md:grid-cols-2">
-            {/* Bio Section */}
+          <div className="grid gap-6 md:grid-cols-2 mt-6">
             <Card className="bg-gray-800 border-gray-700">
               <CardHeader>
                 <div className="flex items-center gap-2">
@@ -198,27 +162,13 @@ export default function Profile({profile} : {profile: ProfileProps}) {
               </CardHeader>
               <CardContent>
                 {isEditing ? (
-                  <Textarea
-                    value={editData.bio ?? ""}
-                    onChange={(e) => handleInputChange("bio", e.target.value)}
-                    placeholder="Tell us about yourself, your interests, and what drives your passion for technology..."
-                    className="min-h-[120px] bg-gray-700 border-gray-600 text-white placeholder-gray-400 resize-none"
-                  />
+                  <Textarea {...register("bio")} className="min-h-[120px] bg-gray-700 border-gray-600 text-white" />
                 ) : (
-                  <div className="text-gray-300">
-                    {profileData.bio ? (
-                      <p>{profileData.bio}</p>
-                    ) : (
-                      <p className="italic text-gray-500">
-                        Tell us about yourself, your interests, and what drives your passion for technology...
-                      </p>
-                    )}
-                  </div>
+                  <p className="text-gray-300 whitespace-pre-wrap">{updatedProfile.bio || "No bio available."}</p>
                 )}
               </CardContent>
             </Card>
 
-            {/* Skills Section */}
             <Card className="bg-gray-800 border-gray-700">
               <CardHeader>
                 <div className="flex items-center gap-2">
@@ -228,55 +178,18 @@ export default function Profile({profile} : {profile: ProfileProps}) {
               </CardHeader>
               <CardContent>
                 {isEditing ? (
-                  <div className="space-y-2">
-                    <Input
-                      value={editData.skills}
-                      onChange={(e) => handleInputChange("skills", e.target.value)}
-                      placeholder="Enter skills separated by commas (e.g., JavaScript, React, Node.js)"
-                      className="bg-gray-700 border-gray-600 text-white placeholder-gray-400"
-                    />
-                    <p className="text-xs text-gray-500">Separate skills with commas</p>
-                  </div>
+                  <Input {...register("skills")} className="bg-gray-700 border-gray-600 text-white" placeholder="e.g. JavaScript, React, Node.js" />
                 ) : (
-                  <div className="space-y-3">
-                    {profileData.skills ? (
-                      <div className="flex flex-wrap gap-2">
-                        {profileData.skills.map((skill, index) => (
-                          <Badge
-                            key={index}
-                            variant="secondary"
-                            className="bg-gray-700 text-gray-200 hover:bg-gray-600"
-                          >
-                            {skill.trim()}
-                          </Badge>
-                        ))}
-                      </div>
-                    ) : (
-                      <div className="space-y-2">
-                        <p className="text-gray-500 italic text-sm mb-3">Add your skills and technologies...</p>
-                        <div className="flex flex-wrap gap-2">
-                          <Badge variant="outline" className="border-gray-600 text-gray-400">
-                            JavaScript
-                          </Badge>
-                          <Badge variant="outline" className="border-gray-600 text-gray-400">
-                            React
-                          </Badge>
-                          <Badge variant="outline" className="border-gray-600 text-gray-400">
-                            Node.js
-                          </Badge>
-                          <Badge variant="outline" className="border-gray-600 text-gray-400">
-                            Python
-                          </Badge>
-                        </div>
-                      </div>
-                    )}
+                  <div className="flex flex-wrap gap-2">
+                    {updatedProfile.skills.map((skill, idx) => (
+                      <Badge key={idx} className="bg-gray-700 text-gray-200">{skill}</Badge>
+                    ))}
                   </div>
                 )}
               </CardContent>
             </Card>
           </div>
-
-          <Card className="bg-gray-800 border-gray-700 mt-6">
+                    <Card className="bg-gray-800 border-gray-700 mt-6">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <Code className="w-5 h-5 text-green-400" />
@@ -306,9 +219,9 @@ export default function Profile({profile} : {profile: ProfileProps}) {
                 <p className="text-sm text-gray-500 mt-1">Track your work-in-progress projects here</p>
               </div>
             </CardContent>
-          </Card>
+          </Card> 
         </div>
       </main>
     </div>
-  )
+  );
 }

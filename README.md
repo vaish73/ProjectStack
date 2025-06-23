@@ -164,3 +164,4 @@ Whether you're a developer, designer or just a curious learner — if the vision
 ## 📬 How to Reach Us
 
 Drop an issue in the GitHub repo or shoot a message on LinkedIn/GitHub to any of the team members listed above.
+

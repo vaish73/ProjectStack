@@ -10,4 +10,5 @@ export const onboardingSchema = z.object({
     bio: z.string().optional()
 })
 
+
 export type OnboardingType = z.infer<typeof onboardingSchema>
