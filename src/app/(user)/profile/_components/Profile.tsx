@@ -38,7 +38,7 @@ type FormValues = {
   branch: string;
   year: string;
   bio: string;
-  skills: string; // comma-separated
+  skills: string; 
 };
 
 export default function Profile({ profile }: { profile: ProfileProps }) {
@@ -46,7 +46,7 @@ export default function Profile({ profile }: { profile: ProfileProps }) {
   const [isEditing, setIsEditing] = useState(false);
   const [updatedProfile, setUpdatedProfile] = useState<ProfileProps>(profile);
 
-  const { register, handleSubmit, reset, watch } = useForm<FormValues>({
+  const { register, handleSubmit, reset } = useForm<FormValues>({
     defaultValues: {
       section: profile.section,
       branch: profile.branch,
