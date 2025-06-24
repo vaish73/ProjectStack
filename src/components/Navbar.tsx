@@ -5,11 +5,13 @@ import { Button } from './ui/button';
 import { signOut, useSession } from "next-auth/react";
 import Image from 'next/image';
 import { Headset, LayoutDashboard, LogOut, UserRound } from 'lucide-react';
+import TopLoader from './CustomUI/TopLoader';
 
 const Navbar = () => {
     const [loading, setLoading] = useState(false);
     const [drop, setDrop] = useState(false);
     const { data: session, status } = useSession();
+    const [loaderTop, setLoaderTop] = useState(false);
     console.log(session);
 
     useEffect(() => {
@@ -34,7 +36,14 @@ const Navbar = () => {
             <nav className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-700">
                 <div className="container items-center mx-auto px-4 lg:px-6">
                     <div className="flex items-center justify-between h-16">
-                        <Link href="/">
+                        <Link
+                            onClick={() => {
+                                setLoaderTop(true);
+                                setTimeout(() => {
+                                    setLoaderTop(false);
+                                }, 1000)
+                            }}
+                            href="/">
                             <div className="flex items-center space-x-2">
 
                                 <Image
@@ -55,18 +64,32 @@ const Navbar = () => {
 
                             {session ? (
                                 <>
-                                    <Link href="/dashboard" className="text-slate-300 flex items-center gap-2 text-sm hover:text-blue-400 transition-colors">
+                                    <Link href="/dashboard"
+                                        onClick={() => {
+                                            setLoaderTop(true);
+                                            setTimeout(() => {
+                                                setLoaderTop(false);
+                                            }, 1000)
+                                        }}
+                                        className="text-slate-300 flex items-center gap-2 text-sm hover:text-blue-400 transition-colors">
                                         <div className='md:flex hidden'>
-                                            Dashboard 
+                                            Dashboard
                                         </div>
-                                      <div className='block md:hidden'><LayoutDashboard/></div>
+                                        <div className='block md:hidden'><LayoutDashboard /></div>
 
                                     </Link>
-                                    <Link href="/contact" className="text-slate-300 flex text-sm hover:text-blue-400 transition-colors">
+                                    <Link href="/contact"
+                                        onClick={() => {
+                                            setLoaderTop(true);
+                                            setTimeout(() => {
+                                                setLoaderTop(false);
+                                            }, 1000)
+                                        }}
+                                        className="text-slate-300 flex text-sm hover:text-blue-400 transition-colors">
                                         <div className='md:flex hidden'>
                                             Contact
-                                        </div>  
-                                        <div className='block md:hidden'><Headset/></div>
+                                        </div>
+                                        <div className='block md:hidden'><Headset /></div>
 
                                     </Link>
                                     <div className="relative z-[9999] profile-dropdown items-center pt-2">
@@ -88,25 +111,35 @@ const Navbar = () => {
                                                 <Link
                                                     href="/profile"
                                                     className="px-4 py-2 justify-between  flex gap-4 items-center text-sm text-neutral-200 hover:bg-slate-700 transition-colors"
-                                                    onClick={() => setDrop(false)}
+                                                    onClick={() => {
+                                                        setDrop(false)
+                                                        setLoaderTop(true);
+                                                        setTimeout(() => {
+                                                            setLoaderTop(false);
+                                                        }, 1000)
+                                                    }}
                                                 >
-                                                    Profile 
+                                                    Profile
                                                     <div>
-                                                        <UserRound className='w-5'/>
+                                                        <UserRound className='w-5' />
                                                     </div>
                                                 </Link>
-                                                <hr className=" border-slate-600"/>
+                                                <hr className=" border-slate-600" />
                                                 <button
                                                     onClick={() => {
                                                         console.log("Signing Out...");
                                                         signOut({ callbackUrl: "/" });
                                                         setDrop(false);
+                                                        setLoaderTop(true);
+                                                        setTimeout(() => {
+                                                            setLoaderTop(false);
+                                                        }, 1000)
                                                     }}
                                                     className="w-full mr-0.5 rounded-b-lg flex gap-2 cursor-pointer justify-between items-center text-left px-4 py-2 text-sm text-red-400 hover:bg-slate-700 transition-colors"
                                                 >
-                                                    Sign Out 
+                                                    Sign Out
                                                     <div>
-                                                        <LogOut className='w-5'/>
+                                                        <LogOut className='w-5' />
                                                     </div>
                                                 </button>
                                             </div>
@@ -118,7 +151,9 @@ const Navbar = () => {
                                 <Link
                                     href="/sign-in">
                                     <Button
-                                        onClick={() => setLoading(true)}
+                                        onClick={() => {
+                                            setLoading(true);
+                                        }}
                                         className="bg-gradient-to-r cursor-pointer from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600">
                                         Get Started {loading && (
                                             <>
@@ -134,6 +169,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </nav>
+            <TopLoader loading={loaderTop} />
         </div>
     )
 }

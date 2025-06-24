@@ -37,7 +37,6 @@ export default function AgencyLanding() {
                 </h1>
                 <p className="md:text-xl text-sm  text-slate-300 leading-relaxed">
                   ProjectStack is where student talent meets real-world innovation — post your projects,<br /> join teams based on your skills, or freelance your way into the future. Build. Collaborate. Get hired.
-
                 </p>
               </div>
 

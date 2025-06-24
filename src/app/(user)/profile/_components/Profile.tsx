@@ -45,6 +45,7 @@ export default function Profile({ profile }: { profile: ProfileProps }) {
   const { data: session, status } = useSession();
   const [isEditing, setIsEditing] = useState(false);
   const [updatedProfile, setUpdatedProfile] = useState<ProfileProps>(profile);
+  const [loading, setLoading] = useState(false);
 
   const { register, handleSubmit, reset } = useForm<FormValues>({
     defaultValues: {
@@ -67,6 +68,7 @@ export default function Profile({ profile }: { profile: ProfileProps }) {
     await editProfile(updatedFields);
     setUpdatedProfile(prev => ({ ...prev, ...updatedFields, skills: updatedFields.skills ?? prev.skills }));
     setIsEditing(false);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -96,9 +98,24 @@ export default function Profile({ profile }: { profile: ProfileProps }) {
                 </Button>
               ) : (
                 <>
-                  <Button onClick={handleSubmit(onSubmit)} size="sm" className="bg-green-600 hover:bg-green-700">
-                    <Save className="w-4 h-4 mr-2" />
-                    Save
+                
+                  <Button onClick={() => {
+                      setLoading(true);
+                      handleSubmit(onSubmit)();
+                  }
+                    } size="sm" className="bg-blue-600 cursor-pointer hover:bg-blue-700">
+                    {loading ? (
+                      <div className="flex space-x-1">
+                        <div className="w-2 h-2 bg-neutral-300 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+                        <div className="w-2 h-2 bg-neutral-300 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+                        <div className="w-2 h-2 bg-neutral-300 rounded-full animate-bounce"></div>
+                      </div>
+                    ):(
+                      <>
+                      <Save className="w-4 h-4 mr-2" />
+                       Save
+                      </>
+                    )}
                   </Button>
                   <Button
                     onClick={() => { reset(); setIsEditing(false); }}
@@ -189,7 +206,7 @@ export default function Profile({ profile }: { profile: ProfileProps }) {
               </CardContent>
             </Card>
           </div>
-                    <Card className="bg-gray-800 border-gray-700 mt-6">
+          <Card className="bg-gray-800 border-gray-700 mt-6">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <Code className="w-5 h-5 text-green-400" />
