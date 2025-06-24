@@ -151,8 +151,20 @@ export default function Profile({ profile }: { profile: ProfileProps }) {
                   <h2 className="text-2xl font-bold text-white mb-2">{session?.user?.name || updatedProfile.name}</h2>
                   {isEditing ? (
                     <div className="flex flex-col md:flex-row gap-4">
-                      <Input {...register("branch")} placeholder="Branch" className="bg-gray-700 border-gray-600 text-white" />
-                      <Input {...register("year")} placeholder="Year" className="bg-gray-700 border-gray-600 text-white" />
+                      <select {...register("branch")} className="bg-gray-700 border-gray-600 text-white">
+                        <option value="">Select Branch</option>
+                        <option value="CSE">CSE</option>
+                        <option value="ISE">ISE</option>
+                        <option value="ICB">ICB</option>
+                        <option value="AIML">AIML</option>
+                      </select>
+                      <select {...register("year")} className="bg-gray-700 border-gray-600 text-white">
+                        <option value="">Select Year</option>
+                        <option value="First Year">First Year</option>
+                        <option value="Second Year">Second Year</option>
+                        <option value="Third Year">Third Year</option>
+                        <option value="Fourth Year">Fourth Year</option>
+                      </select>
                       <Input {...register("section")} placeholder="Section" className="bg-gray-700 border-gray-600 text-white" />
                     </div>
                   ) : (
