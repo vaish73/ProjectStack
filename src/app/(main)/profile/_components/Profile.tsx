@@ -151,19 +151,19 @@ export default function Profile({ profile }: { profile: ProfileProps }) {
                   <h2 className="text-2xl font-bold text-white mb-2">{session?.user?.name || updatedProfile.name}</h2>
                   {isEditing ? (
                     <div className="flex flex-col md:flex-row gap-4">
-                      <select {...register("branch")} className="bg-gray-700 border-gray-600 text-white">
-                        <option value="">Select Branch</option>
-                        <option value="CSE">CSE</option>
-                        <option value="ISE">ISE</option>
-                        <option value="ICB">ICB</option>
-                        <option value="AIML">AIML</option>
+                      <select {...register("branch")} className="bg-gray-700 border border-gray-600 text-white px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150">
+                        <option className="bg-slate-800 text-white" value="">Select Branch</option>
+                        <option className="bg-slate-800 text-white" value="CSE">CSE</option>
+                        <option className="bg-slate-800 text-white" value="ISE">ISE</option>
+                        <option className="bg-slate-800 text-white" value="ICB">ICB</option>
+                        <option className="bg-slate-800 text-white" value="AIML">AIML</option>
                       </select>
-                      <select {...register("year")} className="bg-gray-700 border-gray-600 text-white">
-                        <option value="">Select Year</option>
-                        <option value="First Year">First Year</option>
-                        <option value="Second Year">Second Year</option>
-                        <option value="Third Year">Third Year</option>
-                        <option value="Fourth Year">Fourth Year</option>
+                      <select {...register("year")} className="bg-gray-700 border border-gray-600 text-white px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150">
+                        <option className="bg-slate-800 text-white" value="">Select Year</option>
+                        <option className="bg-slate-800 text-white" value="First Year">First Year</option>
+                        <option className="bg-slate-800 text-white" value="Second Year">Second Year</option>
+                        <option className="bg-slate-800 text-white" value="Third Year">Third Year</option>
+                        <option className="bg-slate-800 text-white" value="Fourth Year">Fourth Year</option>
                       </select>
                       <Input {...register("section")} placeholder="Section" className="bg-gray-700 border-gray-600 text-white" />
                     </div>
