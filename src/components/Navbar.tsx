@@ -33,7 +33,7 @@ const Navbar = () => {
 
     return (
         <div className="min-w-full relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-            <nav className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-700">
+            <nav className="sticky px-5 md:px-10 lg:px-15 py-1 top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-700">
                 <div className="container items-center mx-auto px-4 lg:px-6">
                     <div className="flex items-center justify-between h-16">
                         <Link

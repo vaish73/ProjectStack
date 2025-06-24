@@ -78,7 +78,7 @@ export default function Profile({ profile }: { profile: ProfileProps }) {
   }, [session, status]);
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen px-6 md:px-12 bg-gray-900 text-white">
       <header className="bg-gray-900/50 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center mt-3 justify-between">

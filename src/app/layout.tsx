@@ -24,7 +24,7 @@ const barlow = Barlow({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${barlow.className} font-[var(--font-barlow)] antialiased`}>
+      <body className={`${barlow.className} bg-gradient-to-br w-full from-slate-900 via-slate-800 to-slate-900 font-[var(--font-barlow)] antialiased`}>
         {children}
       </body>
     </html>

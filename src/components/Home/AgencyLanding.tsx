@@ -9,19 +9,16 @@ import {
   Users,
   Zap,
   Shield,
-  ArrowRight,
   CheckCircle,
 } from "lucide-react"
 import Image from "next/image"
 import Link from 'next/link';
-import { useState } from "react";
 
 export default function AgencyLanding() {
-  const [loading, setLoading] = useState(false);
   return (
-    <div className="min-w-full overflow-hidden relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      <section className="py-20 lg:py-32">
-        <div className="container mx-auto px-4 lg:px-6">
+    <div className="min-w-full  overflow-hidden relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <section className="py-20 md:px-10 lg:px-10 lg:py-32">
+        <div className="container mx-auto px-8 lg:px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
@@ -40,26 +37,8 @@ export default function AgencyLanding() {
                 </p>
               </div>
 
-              <div className="flex flex-row gap-4">
-                <Link href="/sign-in">
-                  <Button
-                    size="lg"
-                    onClick={()=> setLoading(true)}
-                    className="bg-gradient-to-r cursor-pointer from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600"
-                  >
-                    Get Started {loading && (
-                      <>
-                        <div className="w-4 h-4 border-4 border-blue-500 border-dashed duration-500 rounded-full animate-spin"></div>
-                      </>
-                    )}
-                    {!loading && (
-                      <>
-                        <ArrowRight className="ml-2 w-4 h-4" />
-                      </>
-                    )}
-                  </Button>
-                </Link>
-
+              <div className="flex flex-row gap-4">    
+                <Link href="https://github.com/Shreyas-99/ProjectStack">
                 <Button
                   size="lg"
                   variant="outline"
@@ -67,6 +46,8 @@ export default function AgencyLanding() {
                 >
                   View Our Work
                 </Button>
+                </Link>
+                
               </div>
             </div>
 
@@ -80,25 +61,25 @@ export default function AgencyLanding() {
                 className="relative rounded-full shadow-6xl inset-1"
               />
             </div>
-              <div className="flex items-center md:justify-around justify-center space-x-8 pt-8">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-white">100+</div>
-                  <div className="text-sm text-slate-400">Projects Posted</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-white">98%</div>
-                  <div className="text-sm text-slate-400">Client Satisfaction</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-white">9-5</div>
-                  <div className="text-sm text-slate-400">Support</div>
-                </div>
+            <div className="flex items-center md:justify-around justify-center space-x-8 pt-8">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-white">100+</div>
+                <div className="text-sm text-slate-400">Projects Posted</div>
               </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-white">98%</div>
+                <div className="text-sm text-slate-400">Client Satisfaction</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-white">9-5</div>
+                <div className="text-sm text-slate-400">Support</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="services" className="py-20 bg-slate-800">
+      <section id="services" className="py-20 px-6 bg-slate-800">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="text-center space-y-4 mb-16">
             <Badge className="bg-blue-900/50 text-blue-300 border border-blue-700">What You Can Build</Badge>
@@ -158,8 +139,8 @@ export default function AgencyLanding() {
                 className="group hover:shadow-2xl transition-all duration-300 border border-slate-700 shadow-lg bg-slate-900/50 backdrop-blur-sm"
               >
                 <CardHeader>
-                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <service.icon className="w-6 h-6 text-white" />
+                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center mb-4  transition-transform">
+                    <service.icon className="w-6 h-6 text-white decoration-0" />
                   </div>
                   <CardTitle className="text-xl text-white">{service.title}</CardTitle>
                   <CardDescription className="text-slate-300">{service.description}</CardDescription>
@@ -181,7 +162,7 @@ export default function AgencyLanding() {
       </section>
 
 
-      <section id="about" className="py-20 bg-gradient-to-r from-slate-900 to-slate-800">
+      <section id="about" className="py-20 px-6 bg-gradient-to-r from-slate-900 to-slate-800">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
@@ -205,10 +186,12 @@ export default function AgencyLanding() {
                   </div>
                 ))}
               </div>
+              <Link href="/dashboard" className="cursor-pointer">
+                <Button className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 cursor-pointer hover:to-indigo-600">
+                  Explore Projects
+                </Button>
+              </Link>
 
-              <Button className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600">
-                Explore Projects
-              </Button>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
@@ -238,7 +221,7 @@ export default function AgencyLanding() {
       </section>
 
 
-      <section id="collaboration" className="py-20 bg-slate-800">
+      <section id="collaboration" className="py-20 px-5 bg-slate-800">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="text-center space-y-4 mb-16">
             <Badge className="bg-blue-900/50 text-blue-300 border border-blue-700">Partnership</Badge>

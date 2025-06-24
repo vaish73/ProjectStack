@@ -93,7 +93,7 @@ function Dashboard() {
         </div>
       </div>
 
-      <div className=' md:mx-[12%] relative  min-h-screen p-6'>
+      <div className=' md:mx-[8%] relative  min-h-screen p-6'>
         {filteredArray.map((item, index) => (
           <Card key={index} className='border mb-8 border-slate-700 bg-slate-800/50 md:h-[300px]  hover:shadow-2xl transition-all duration-300'>
             <CardContent className='p-6'>
