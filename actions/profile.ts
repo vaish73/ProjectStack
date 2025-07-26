@@ -1,0 +1,40 @@
+"use server";
+
+import { authOptions } from "@/app/api/auth/[...nextauth]/options";
+import { prisma } from "@/lib/prisma";
+import { getServerSession } from "next-auth";
+
+type ProfileData = {
+    skills?: string[],
+    section ?:string
+    branch ?:string
+    year ?:string
+    bio ?: string | null
+}
+
+export async function editProfile(data: ProfileData){
+    const session = await getServerSession(authOptions);
+    if(!session?.user.email) throw new Error("Unauthorized Access");
+    const user = await prisma.user.findUnique({
+        where: { email: session.user.email}
+    })
+    if(!user) throw new Error("User not found");
+    const profile = await prisma.profile.findUnique({
+        where: { userId: user.id }
+    });
+    if(!profile) throw new Error("Error Fetching the profile");
+    const updatedProfile = await prisma.profile.update({
+        where: {userId: user.id},
+        data: { 
+            skills: data.skills ?? profile.skills,
+            section: data.section ?? profile.section,
+            branch: data.branch ?? profile.branch,
+            year: data.year ?? profile.year,
+            bio: data.bio ?? profile.bio
+        }
+    })
+    console.log(updatedProfile);
+    
+    return updatedProfile;
+}
+

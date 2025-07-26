@@ -40,7 +40,7 @@ Built as a group project by our class to streamline and enrich collaborative lea
 | Sunpreeth | Developer | [@Sunpreeth](https://github.com/anysdefdefe) |
 | Vaishnav | Developer | [@vaish73](https://github.com/vaish73) |
 | Shravan Raj | Developer | [@Shravan-Raj](https://github.com/ShravanRajj) |
-| ... | ... | ... |
+| Shreyas BS | Developer | [@Shreyas-BSj](https://github.com/Shreyas-99) |
 
 ---
 
@@ -137,7 +137,7 @@ npm run dev
 
 ## 🤝 Join the Mission — We're Open for Collaborators!
 
-Whether you're a developer, designer or just a curious learner — if the vision of CampusCollab excites you, we’d love to have you onboard.
+Whether you're a developer, designer or just a curious learner — if the vision of ProjectStack excites you, we’d love to have you onboard.
 
 # 💡 What You’ll Get
 
@@ -163,4 +163,5 @@ Whether you're a developer, designer or just a curious learner — if the vision
 
 ## 📬 How to Reach Us
 
-Drop an issue in the GitHub repo or shoot a message on LinkedIn/GitHub to any of the team members listed above.
+Drop an issue in the GitHub repo or shoot a message on LinkedIn/GitHub/Instagram to any of the team members listed above.
+
