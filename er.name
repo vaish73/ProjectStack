@@ -1,0 +1,10 @@
+827cad1 - Vaishnav (cvaishnav744@gmail.com) : Add project creation form component
+c8508b0 - Vaishnav (cvaishnav744@gmail.com) : Fix: Resolve UI alignment issues on profile page
+bd3e73a - Vaishnav (cvaishnav744@gmail.com) : Add projects page
+ae488c7 - vaish73 (cvaishnav744@gmail.com) : Resolve merge conflict in package-lock.json
+72aa128 - Shikhar Shetty (shettyshikhar99@gmail.com) : Dependencies Updates
+cd4314b - anysdefdefe (sunpreethvishva89@gmail.com) : Merge pull request #9 from Shikhar-Shetty/update-profile-page
+97de112 - sunp (sunpreethvishva89@gmail.com) : ui change to options
+be94170 - sunp (sunpreethvishva89@gmail.com) : add option input for branch and year in profile edit
+4b7a7b5 - Shikhar Shetty (shettyshikhar99@gmail.com) : Fix: Addressed UI issues raised in GitHub issue #8 - Navbar now loads instantly - Removed duplicate 'Get Started' button - Fixed broken links in footer and sections - Improved layout and padding consistency
+f1bd87b - Shikhar-Shetty (shettyshikhar99@gmail.com) : Merge pull request #7 from Shikhar-Shetty/yolo-branch
